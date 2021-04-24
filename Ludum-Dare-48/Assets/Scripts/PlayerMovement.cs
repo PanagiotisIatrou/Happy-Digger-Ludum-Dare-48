@@ -10,6 +10,7 @@ public class PlayerMovement : MonoBehaviour
 
     private bool isInMiningState = false;
     private bool isDirLeft = true;
+    private bool isMiningDown = false;
     private float switchTime = 0.07f;
     private Coroutine switchDirCoroutine;
     private Transform spriteTR;
@@ -31,15 +32,15 @@ public class PlayerMovement : MonoBehaviour
             // Get direction to see if player wants to mine
             if (Input.GetKey(KeyCode.A) && isDirLeft && GroundManager.ExistsTileInPosition(pos + new Vector2Int(-1, 0)))
             {
-                StartMining(pos, new Vector2Int(-1, 0));
+                StartMining(pos, Vector2Int.left);
             }
             if (Input.GetKey(KeyCode.D) && !isDirLeft && GroundManager.ExistsTileInPosition(pos + new Vector2Int(1, 0)))
             {
-                StartMining(pos, new Vector2Int(1, 0));
+                StartMining(pos, Vector2Int.right);
             }
             if (Input.GetKey(KeyCode.S) && GroundManager.ExistsTileInPosition(pos + new Vector2Int(0, -1)))
             {
-                StartMining(pos, new Vector2Int(0, -1));
+                StartMining(pos, Vector2Int.down);
             }
         }
     }
@@ -53,15 +54,16 @@ public class PlayerMovement : MonoBehaviour
         {
             if (!isDirLeft)
                 SwitchDirection();
-            rb.AddForce(new Vector2(-forceSpeed * Time.fixedDeltaTime, 0));
+            rb.AddForce(new Vector2(-forceSpeed * Time.fixedDeltaTime, 0f));
         }
         if (Input.GetKey(KeyCode.D))
         {
             if (isDirLeft)
                 SwitchDirection();
-            rb.AddForce(new Vector2(forceSpeed * Time.fixedDeltaTime, 0));
+            rb.AddForce(new Vector2(forceSpeed * Time.fixedDeltaTime, 0f));
         }
 
+        // Clamp speed
         if (rb.velocity.magnitude >= maxSpeed)
         {
             rb.velocity = rb.velocity.normalized * maxSpeed;
@@ -98,6 +100,14 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    private void SetMiningDownDrillState(bool state)
+    {
+        isMiningDown = state;
+        Transform graphics = transform.GetChild(0);
+        graphics.GetChild(0).gameObject.SetActive(!state);
+        graphics.GetChild(1).gameObject.SetActive(state);
+    }
+
     private IEnumerator IEStartMining(Vector2Int startPos, Vector2Int direction)
     {
         Vector2 playerStartPos = transform.position;
@@ -132,6 +142,7 @@ public class PlayerMovement : MonoBehaviour
         rb.isKinematic = false;
 
         isInMiningState = false;
+        SetMiningDownDrillState(false);
     }
 
     private void StartMining(Vector2Int startPos, Vector2Int direction)
@@ -140,6 +151,9 @@ public class PlayerMovement : MonoBehaviour
             return;
 
         isInMiningState = true;
+        if (direction == Vector2Int.down)
+            SetMiningDownDrillState(true);
+
         StartCoroutine(IEStartMining(startPos, direction));
     }
 }
