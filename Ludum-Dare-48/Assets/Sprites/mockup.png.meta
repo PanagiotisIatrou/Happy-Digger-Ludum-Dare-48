@@ -1,0 +1,473 @@
+fileFormatVersion: 2
+guid: 773387411b0e98249936e2b3479a49f6
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 5865110138269528773
+    second: mockup_1
+  - first:
+      213: 2888427252096979072
+    second: mockup_0
+  - first:
+      213: 3327274352691754004
+    second: mockup_2
+  - first:
+      213: 702993174913099476
+    second: mockup_3
+  - first:
+      213: 5484203052623828037
+    second: mockup_4
+  - first:
+      213: 2979764389279299
+    second: mockup_5
+  - first:
+      213: 3838483058914842864
+    second: mockup_6
+  - first:
+      213: -1088202418300401282
+    second: mockup_7
+  - first:
+      213: -2830251380701082588
+    second: mockup_8
+  - first:
+      213: 908911856991562527
+    second: mockup_9
+  - first:
+      213: -5430141392932049234
+    second: mockup_10
+  - first:
+      213: -6282994990157695922
+    second: mockup_11
+  - first:
+      213: 5942839776865027404
+    second: mockup_12
+  - first:
+      213: 6672841453653256615
+    second: mockup_13
+  - first:
+      213: -785323907947507295
+    second: mockup_14
+  - first:
+      213: -1206044615620886931
+    second: mockup_15
+  - first:
+      213: 8165662021298212768
+    second: mockup_16
+  - first:
+      213: -6326332379483210795
+    second: mockup_17
+  - first:
+      213: 5072238462175497946
+    second: mockup_18
+  - first:
+      213: 1543064681162821468
+    second: mockup_19
+  - first:
+      213: 6568180688555781646
+    second: mockup_20
+  - first:
+      213: 1832252667426439217
+    second: mockup_21
+  - first:
+      213: -4028312046827759417
+    second: mockup_22
+  - first:
+      213: -5787900878930137259
+    second: mockup_23
+  - first:
+      213: 2489455398172654348
+    second: mockup_24
+  - first:
+      213: -6182515049905002151
+    second: mockup_25
+  - first:
+      213: 7588004832778410211
+    second: mockup_26
+  - first:
+      213: -2434214834764492167
+    second: mockup_27
+  - first:
+      213: 7466569535667620851
+    second: mockup_28
+  - first:
+      213: -6244521891231776788
+    second: mockup_29
+  - first:
+      213: 6918173998803486295
+    second: mockup_30
+  - first:
+      213: -8970073240520322177
+    second: mockup_31
+  - first:
+      213: 2441036390362928549
+    second: mockup_32
+  - first:
+      213: -2944482214547674307
+    second: mockup_33
+  - first:
+      213: -1107825532960478311
+    second: mockup_34
+  - first:
+      213: 2819508444303046090
+    second: mockup_35
+  - first:
+      213: -4891168255952484652
+    second: mockup_36
+  - first:
+      213: 4352844835962789297
+    second: mockup_37
+  - first:
+      213: 3874865182102479672
+    second: mockup_38
+  - first:
+      213: -5074692959066117774
+    second: mockup_39
+  - first:
+      213: 4160371734465784315
+    second: mockup_40
+  - first:
+      213: 5156515536792492639
+    second: mockup_41
+  - first:
+      213: -2516417850181535701
+    second: mockup_42
+  - first:
+      213: -2719017244712613855
+    second: mockup_43
+  - first:
+      213: -3547529791352830144
+    second: mockup_44
+  - first:
+      213: 6326712471333552711
+    second: mockup_45
+  - first:
+      213: -1189618641493609934
+    second: mockup_46
+  - first:
+      213: -8519457981052749514
+    second: mockup_47
+  - first:
+      213: -711616022388601512
+    second: mockup_48
+  - first:
+      213: 3747762902128518147
+    second: mockup_49
+  - first:
+      213: 785401933641374844
+    second: mockup_50
+  - first:
+      213: -2626831427778308353
+    second: mockup_51
+  - first:
+      213: -4665910680743964991
+    second: mockup_52
+  - first:
+      213: -4564821950288842957
+    second: mockup_53
+  - first:
+      213: -6583414132333125179
+    second: mockup_54
+  - first:
+      213: -4949025414219735732
+    second: mockup_55
+  - first:
+      213: -288712747206262561
+    second: mockup_56
+  - first:
+      213: 2418693757852022783
+    second: mockup_57
+  - first:
+      213: -456433632058911445
+    second: mockup_58
+  - first:
+      213: 8915567694629117843
+    second: mockup_59
+  - first:
+      213: 2152992549963039130
+    second: mockup_60
+  - first:
+      213: 4540174001437435998
+    second: mockup_61
+  - first:
+      213: 1785371480852719828
+    second: mockup_62
+  - first:
+      213: -5242919413447088503
+    second: mockup_63
+  - first:
+      213: -5038531334541908105
+    second: mockup_64
+  - first:
+      213: -6308254176580508101
+    second: mockup_65
+  - first:
+      213: -5161721671509774158
+    second: mockup_66
+  - first:
+      213: -893353896329381915
+    second: mockup_67
+  - first:
+      213: -6876970212278356036
+    second: mockup_68
+  - first:
+      213: -1399506347153019448
+    second: mockup_69
+  - first:
+      213: -2418188266564944007
+    second: mockup_70
+  - first:
+      213: 99849986928130454
+    second: mockup_71
+  - first:
+      213: -3991289270912856073
+    second: mockup_72
+  - first:
+      213: -1601350479954744496
+    second: mockup_73
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 16
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: mockup_1
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 104
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5c2f818989e056150800000000000000
+      internalID: 5865110138269528773
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mockup_0
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 104
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0805cc04841c51820800000000000000
+      internalID: 2888427252096979072
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mockup_2
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 104
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 414b576256adc2e20800000000000000
+      internalID: 3327274352691754004
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mockup_3
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 88
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4d62836619881c900800000000000000
+      internalID: 702993174913099476
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mockup_4
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 104
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 54491cbae9dcb1c40800000000000000
+      internalID: 5484203052623828037
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mockup_5
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 88
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 346ffe574169a0000800000000000000
+      internalID: 2979764389279299
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mockup_6
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 72
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0f859f24108054530800000000000000
+      internalID: 3838483058914842864
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
