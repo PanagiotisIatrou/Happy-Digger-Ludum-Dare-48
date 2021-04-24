@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public GroundManager groundManager;
     private float forceSpeed = 1000f;
     private float maxSpeed = 5f;
     private Rigidbody2D rb;
@@ -30,15 +29,15 @@ public class PlayerMovement : MonoBehaviour
             Vector2Int pos = new Vector2Int(Mathf.RoundToInt(transform.position.x), Mathf.RoundToInt(transform.position.y));
 
             // Get direction to see if player wants to mine
-            if (Input.GetKey(KeyCode.A) && isDirLeft && groundManager.ExistsTileInPosition(pos + new Vector2Int(-1, 0)))
+            if (Input.GetKey(KeyCode.A) && isDirLeft && GroundManager.ExistsTileInPosition(pos + new Vector2Int(-1, 0)))
             {
                 StartMining(pos, new Vector2Int(-1, 0));
             }
-            if (Input.GetKey(KeyCode.D) && !isDirLeft && groundManager.ExistsTileInPosition(pos + new Vector2Int(1, 0)))
+            if (Input.GetKey(KeyCode.D) && !isDirLeft && GroundManager.ExistsTileInPosition(pos + new Vector2Int(1, 0)))
             {
                 StartMining(pos, new Vector2Int(1, 0));
             }
-            if (Input.GetKey(KeyCode.S) && groundManager.ExistsTileInPosition(pos + new Vector2Int(0, -1)))
+            if (Input.GetKey(KeyCode.S) && GroundManager.ExistsTileInPosition(pos + new Vector2Int(0, -1)))
             {
                 StartMining(pos, new Vector2Int(0, -1));
             }
@@ -103,6 +102,8 @@ public class PlayerMovement : MonoBehaviour
     {
         Vector2 playerStartPos = transform.position;
         Vector2Int targetPos = startPos + direction;
+        GroundManager.AddMinedTile(targetPos);
+
         Vector2 targetPosFloats = targetPos;
         Vector2 diff = targetPos - playerStartPos;
         float totalDist = diff.magnitude;
@@ -124,7 +125,7 @@ public class PlayerMovement : MonoBehaviour
         transform.position = targetPosFloats;
 
         // Destroy mined tile
-        groundManager.DestroyTileInPosition(startPos + direction);
+        GroundManager.DestroyTileInPosition(startPos + direction);
 
         // Reenable player physics
         GetComponent<CircleCollider2D>().enabled = true;

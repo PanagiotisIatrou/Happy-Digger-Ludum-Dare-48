@@ -151,6 +151,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tilemap: {fileID: 1250102893}
+  PlayerTR: {fileID: 1529577758}
+  RuleTile: {fileID: 11400000, guid: 839ba946120695447b1898aa34f98d3d, type: 2}
 --- !u!4 &279672046
 Transform:
   m_ObjectHideFlags: 0
