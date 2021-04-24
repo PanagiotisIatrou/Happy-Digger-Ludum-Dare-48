@@ -107,9 +107,12 @@ public class PlayerMovement : MonoBehaviour
         Vector2 diff = targetPos - playerStartPos;
         float totalDist = diff.magnitude;
         Vector2 offset = diff / totalDist;
+
         // Temorarilly disable player physics
         GetComponent<CircleCollider2D>().enabled = false;
         rb.isKinematic = true;
+
+        // Move the player
         float time = 0f;
         while (time < 1f)
         {
@@ -119,6 +122,7 @@ public class PlayerMovement : MonoBehaviour
             yield return null;
         }
         transform.position = targetPosFloats;
+
         // Destroy mined tile
         groundManager.DestroyTileInPosition(startPos + direction);
 
