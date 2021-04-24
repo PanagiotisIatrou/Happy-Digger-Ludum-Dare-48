@@ -124,13 +124,17 @@ public class PlayerMovement : MonoBehaviour
         GetComponent<CircleCollider2D>().enabled = false;
         rb.isKinematic = true;
 
+        // Enable dirt particle emmision
+        transform.GetChild(0).GetChild(0).GetChild(0).GetComponent<ParticleSystem>().Play();
+        transform.GetChild(0).GetChild(1).GetChild(0).GetComponent<ParticleSystem>().Play();
+
         // Move the player
         float time = 0f;
         CameraShaker.Instance.ShakeOnce(0.5f, 3, 1f, 1f);
         while (time < 1f)
         {
             Vector2 newPos = Vector2.MoveTowards(transform.position, targetPos, Time.deltaTime);
-            transform.position = new Vector3(newPos.x, newPos.y, -1);
+            transform.position = new Vector3(newPos.x, newPos.y, -2);
             time += Time.deltaTime;
             yield return null;
         }
@@ -142,6 +146,10 @@ public class PlayerMovement : MonoBehaviour
         // Reenable player physics
         GetComponent<CircleCollider2D>().enabled = true;
         rb.isKinematic = false;
+
+        // Disable dirt particle emmision
+        transform.GetChild(0).GetChild(0).GetChild(0).GetComponent<ParticleSystem>().Stop();
+        transform.GetChild(0).GetChild(1).GetChild(0).GetComponent<ParticleSystem>().Stop();
 
         isInMiningState = false;
         SetMiningDownDrillState(false);

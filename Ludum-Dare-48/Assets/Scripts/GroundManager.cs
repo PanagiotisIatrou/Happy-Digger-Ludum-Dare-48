@@ -23,7 +23,10 @@ public class GroundManager : MonoBehaviour
     public Tilemap tilemap;
     public Transform PlayerTR;
     public RuleTile RuleTile;
+    public Transform SpecialTilesHolder;
+    public GameObject OrePrefab;
     private Dictionary<Vector2Int, bool> minedTiles = new Dictionary<Vector2Int, bool>();
+    private Dictionary<Vector2Int, GameObject> specialTiles = new Dictionary<Vector2Int, GameObject>();
 
     private void Update()
     {
@@ -38,6 +41,19 @@ public class GroundManager : MonoBehaviour
 
                 if (!ExistsTileInPosition(pos) && !minedTiles.ContainsKey(pos))
                 {
+                    if (pos.y < -2)
+                    {
+                        int r1 = Random.Range(0, 10);
+                        if (r1 == 9)
+                        {
+                            GameObject oreGO = Instantiate(OrePrefab, new Vector3(pos.x, pos.y, -1), Quaternion.identity, SpecialTilesHolder);
+                            int r2 = Random.Range(0, 5);
+                            if (r2 == 0)
+                                oreGO.GetComponent<SpriteRenderer>().color = Color.yellow;
+                            specialTiles.Add(pos, oreGO);
+                        }
+                    }
+                    
                     tilemap.SetTile((Vector3Int)pos, RuleTile);
                 }
             }
@@ -52,6 +68,13 @@ public class GroundManager : MonoBehaviour
     public static void DestroyTileInPosition(Vector2Int position)
     {
         Instance.tilemap.SetTile((Vector3Int)position, null);
+        if (Instance.specialTiles.ContainsKey(position))
+        {
+            GameObject ore = Instance.specialTiles[position];
+            Destroy(ore);
+            // Give money
+            Instance.specialTiles.Remove(position);
+        }
     }
 
     public static void AddMinedTile(Vector2Int position)
