@@ -51,6 +51,22 @@ public class GroundManager : MonoBehaviour
             }
         }
     }
+
+    public bool ExistsTileInPosition(Vector2Int position)
+    {
+        return groundTiles.ContainsKey(position);
+    }
+
+    public void DestroyTileInPosition(Vector2Int position)
+    {
+        Destroy(groundTiles[position].GetGameObject());
+        groundTiles.Remove(position);
+    }
+
+    public void SetTileColliderStateInPosition(Vector2Int position, bool state)
+    {
+        groundTiles[position].GetGameObject().GetComponent<BoxCollider2D>().enabled = state;
+    }
 }
 
 public class Tile
@@ -61,5 +77,11 @@ public class Tile
     public Tile(Vector2Int position, GameObject obj)
     {
         this.position = position;
+        this.obj = obj;
+    }
+
+    public GameObject GetGameObject()
+    {
+        return obj;
     }
 }
