@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using EZCameraShake;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -125,6 +126,7 @@ public class PlayerMovement : MonoBehaviour
 
         // Move the player
         float time = 0f;
+        CameraShaker.Instance.ShakeOnce(0.5f, 3, 1f, 1f);
         while (time < 1f)
         {
             Vector2 newPos = Vector2.MoveTowards(transform.position, targetPos, Time.deltaTime);
