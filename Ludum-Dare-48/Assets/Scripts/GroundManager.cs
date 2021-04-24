@@ -27,20 +27,3 @@ public class GroundManager : MonoBehaviour
         tilemap.SetTile((Vector3Int)position, null);
     }
 }
-
-public class Tile
-{
-    private Vector2Int position;
-    GameObject obj;
-
-    public Tile(Vector2Int position, GameObject obj)
-    {
-        this.position = position;
-        this.obj = obj;
-    }
-
-    public GameObject GetGameObject()
-    {
-        return obj;
-    }
-}
