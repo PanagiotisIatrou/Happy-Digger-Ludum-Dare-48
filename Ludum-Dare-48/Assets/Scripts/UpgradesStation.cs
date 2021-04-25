@@ -27,7 +27,7 @@ public class UpgradesStation : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.F))
+        if (isInside && Input.GetKeyDown(KeyCode.F))
         {
             SetShopState(true);
         }

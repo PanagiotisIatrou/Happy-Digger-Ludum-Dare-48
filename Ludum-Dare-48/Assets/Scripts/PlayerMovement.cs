@@ -11,8 +11,8 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody2D rb;
 
     private bool isInMiningState = false;
+    private bool isFlying = false;
     private bool isDirLeft = true;
-    private bool isMiningDown = false;
     private float switchTime = 0.07f;
     private Coroutine switchDirCoroutine;
     private Transform spriteTR;
@@ -20,6 +20,10 @@ public class PlayerMovement : MonoBehaviour
     private Animator movingAnim;
     private Animator horizontalDrillAnim;
     private Animator downDrillAnim;
+    private GameObject horizontalDrillGO;
+    private GameObject downDrillGO;
+    private GameObject thrusterGO;
+    private Animator thrusterAnim;
 
     private void Start()
     {
@@ -29,6 +33,10 @@ public class PlayerMovement : MonoBehaviour
         movingAnim = spriteTR.GetComponent<Animator>();
         horizontalDrillAnim = spriteTR.GetChild(0).GetComponent<Animator>();
         downDrillAnim = spriteTR.GetChild(1).GetComponent<Animator>();
+        horizontalDrillGO = spriteTR.GetChild(0).gameObject;
+        downDrillGO = spriteTR.GetChild(1).gameObject;
+        thrusterGO = spriteTR.GetChild(2).gameObject;
+        thrusterAnim = thrusterGO.GetComponent<Animator>();
     }
 
     private void Update()
@@ -42,14 +50,16 @@ public class PlayerMovement : MonoBehaviour
             fuelManager.DecreaseFuel(Time.deltaTime / 3);
         }
 
-        if (isInMiningState || rb.velocity.magnitude > 0.5f)
+        if (!isFlying && IsTouchingGround() && (isInMiningState || rb.velocity.magnitude > 0.5f))
             movingAnim.SetBool("isMoving", true);
         else
             movingAnim.SetBool("isMoving", false);
 
+        if (isFlying && IsTouchingGround())
+            isFlying = false;
 
         // Check for mining state
-        if (!isInMiningState && rb.velocity.magnitude == 0)
+        if (!isInMiningState && !isFlying && rb.velocity.magnitude == 0)
         {
             // Get player tile position
             Vector2Int pos = new Vector2Int(Mathf.RoundToInt(transform.position.x), Mathf.RoundToInt(transform.position.y));
@@ -87,12 +97,22 @@ public class PlayerMovement : MonoBehaviour
                 SwitchDirection();
             rb.AddForce(new Vector2(forceSpeed * Time.fixedDeltaTime, 0f));
         }
+        if (Input.GetKey(KeyCode.W))
+        {
+            isFlying = true;
+            rb.AddForce(new Vector2(0f, forceSpeed * Time.fixedDeltaTime * 0.8f));
+        }
 
         // Clamp speed
         if (rb.velocity.magnitude >= maxSpeed)
         {
             rb.velocity = rb.velocity.normalized * maxSpeed;
         }
+    }
+
+    private bool IsTouchingGround()
+    {
+        return Physics2D.Raycast(thrusterGO.transform.position, Vector2.down).distance == 0;
     }
 
     private void SwitchDirection()
@@ -127,10 +147,9 @@ public class PlayerMovement : MonoBehaviour
 
     private void SetMiningDownDrillState(bool state)
     {
-        isMiningDown = state;
         Transform graphics = transform.GetChild(0);
-        graphics.GetChild(0).gameObject.SetActive(!state);
-        graphics.GetChild(1).gameObject.SetActive(state);
+        horizontalDrillGO.gameObject.SetActive(!state);
+        downDrillGO.gameObject.SetActive(state);
     }
 
     private IEnumerator IEStartMining(Vector2Int startPos, Vector2Int direction)
@@ -149,8 +168,8 @@ public class PlayerMovement : MonoBehaviour
         rb.isKinematic = true;
 
         // Enable dirt particle emmision
-        transform.GetChild(0).GetChild(0).GetChild(0).GetComponent<ParticleSystem>().Play();
-        transform.GetChild(0).GetChild(1).GetChild(0).GetComponent<ParticleSystem>().Play();
+        horizontalDrillGO.transform.GetChild(0).GetComponent<ParticleSystem>().Play();
+        downDrillGO.transform.GetChild(0).GetComponent<ParticleSystem>().Play();
 
         // Enable drill animation
         horizontalDrillAnim.SetTrigger("StartMining");
@@ -176,8 +195,8 @@ public class PlayerMovement : MonoBehaviour
         rb.isKinematic = false;
 
         // Disable dirt particle emmision
-        transform.GetChild(0).GetChild(0).GetChild(0).GetComponent<ParticleSystem>().Stop();
-        transform.GetChild(0).GetChild(1).GetChild(0).GetComponent<ParticleSystem>().Stop();
+        horizontalDrillGO.transform.GetChild(0).GetComponent<ParticleSystem>().Stop();
+        downDrillGO.transform.GetChild(0).GetComponent<ParticleSystem>().Stop();
 
         // Enable drill animation
         horizontalDrillAnim.SetTrigger("StopMining");
