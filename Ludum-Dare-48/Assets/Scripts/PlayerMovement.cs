@@ -18,6 +18,8 @@ public class PlayerMovement : MonoBehaviour
     private float switchTime = 0.07f;
     private Coroutine switchDirCoroutine;
     private Transform spriteTR;
+    private Animator horizontalDrillAnim;
+    private Animator downDrillAnim;
 
     private void Start()
     {
@@ -26,6 +28,8 @@ public class PlayerMovement : MonoBehaviour
         moneyManager = GetComponent<MoneyManager>();
         inventory = GetComponent<Inventory>();
         spriteTR = transform.GetChild(0);
+        horizontalDrillAnim = spriteTR.GetChild(0).GetComponent<Animator>();
+        downDrillAnim = spriteTR.GetChild(1).GetComponent<Animator>();
     }
 
     private void Update()
@@ -140,6 +144,10 @@ public class PlayerMovement : MonoBehaviour
         transform.GetChild(0).GetChild(0).GetChild(0).GetComponent<ParticleSystem>().Play();
         transform.GetChild(0).GetChild(1).GetChild(0).GetComponent<ParticleSystem>().Play();
 
+        // Enable drill animation
+        horizontalDrillAnim.SetTrigger("StartMining");
+        downDrillAnim.SetTrigger("StartMining");
+
         // Move the player
         float time = 0f;
         CameraShaker.Instance.ShakeOnce(0.5f, 3, 1f, 1f);
@@ -162,6 +170,10 @@ public class PlayerMovement : MonoBehaviour
         // Disable dirt particle emmision
         transform.GetChild(0).GetChild(0).GetChild(0).GetComponent<ParticleSystem>().Stop();
         transform.GetChild(0).GetChild(1).GetChild(0).GetComponent<ParticleSystem>().Stop();
+
+        // Enable drill animation
+        horizontalDrillAnim.SetTrigger("StopMining");
+        downDrillAnim.SetTrigger("StopMining");
 
         isInMiningState = false;
         SetMiningDownDrillState(false);
