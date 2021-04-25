@@ -27,6 +27,12 @@ public class GroundManager : MonoBehaviour
     public GameObject OrePrefab;
     private Dictionary<Vector2Int, bool> minedTiles = new Dictionary<Vector2Int, bool>();
     private Dictionary<Vector2Int, GameObject> specialTiles = new Dictionary<Vector2Int, GameObject>();
+    private PlayerMovement player;
+
+    private void Start()
+    {
+        player = PlayerTR.GetComponent<PlayerMovement>();
+    }
 
     private void Update()
     {
@@ -49,7 +55,14 @@ public class GroundManager : MonoBehaviour
                             GameObject oreGO = Instantiate(OrePrefab, new Vector3(pos.x, pos.y, -1), Quaternion.identity, SpecialTilesHolder);
                             int r2 = Random.Range(0, 5);
                             if (r2 == 0)
+                            {
                                 oreGO.GetComponent<SpriteRenderer>().color = Color.yellow;
+                                oreGO.name = "Gold";
+                            }
+                            else
+                            {
+                                oreGO.name = "Silver";
+                            }
                             specialTiles.Add(pos, oreGO);
                         }
                     }
@@ -72,7 +85,7 @@ public class GroundManager : MonoBehaviour
         {
             GameObject ore = Instance.specialTiles[position];
             Destroy(ore);
-            // Give money
+            Instance.player.GetInventory().AddOre(ore.name);
             Instance.specialTiles.Remove(position);
         }
     }

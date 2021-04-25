@@ -6,6 +6,8 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     private FuelManager fuelManager;
+    private MoneyManager moneyManager;
+    private Inventory inventory;
     private float forceSpeed = 1000f;
     private float maxSpeed = 5f;
     private Rigidbody2D rb;
@@ -21,6 +23,8 @@ public class PlayerMovement : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         fuelManager = GetComponent<FuelManager>();
+        moneyManager = GetComponent<MoneyManager>();
+        inventory = GetComponent<Inventory>();
         spriteTR = transform.GetChild(0);
     }
 
@@ -30,6 +34,17 @@ public class PlayerMovement : MonoBehaviour
         if (isInMiningState || Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D))
         {
             fuelManager.DecreaseFuel(Time.deltaTime / 3);
+        }
+
+        // Sell inventory
+        if (Input.GetKeyDown(KeyCode.G))
+        {
+            int silverOres = inventory.GetNumberOfOresWithName("Silver");
+            int goldOres = inventory.GetNumberOfOresWithName("Gold");
+            moneyManager.AddMoney(5 * silverOres);
+            moneyManager.AddMoney(20 * goldOres);
+
+            inventory.RemoveAllOres();
         }
 
         // Check for mining state
@@ -77,6 +92,11 @@ public class PlayerMovement : MonoBehaviour
         {
             rb.velocity = rb.velocity.normalized * maxSpeed;
         }
+    }
+
+    public Inventory GetInventory()
+    {
+        return inventory;
     }
 
     private void SwitchDirection()

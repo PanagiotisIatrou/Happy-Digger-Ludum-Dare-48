@@ -16772,6 +16772,8 @@ GameObject:
   - component: {fileID: 1529577760}
   - component: {fileID: 1529577761}
   - component: {fileID: 1529577757}
+  - component: {fileID: 1529577763}
+  - component: {fileID: 1529577762}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -16857,6 +16859,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5e74abd10876e84992f2ed159e0f18b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1529577762
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1529577756}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d98ca3d62a0366e4e837dc7ab036d2e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1529577763
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1529577756}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f88c88c91f323344b8be3f9f929d3c82, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moneyText: {fileID: 2085960582}
 --- !u!1 &1600078012
 GameObject:
   m_ObjectHideFlags: 0
@@ -17367,7 +17394,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: $11000
+  m_text: $100
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8b5431927c60dc841bbe9fc7ea84852e, type: 2}
   m_sharedMaterial: {fileID: -6886146641333090755, guid: 8b5431927c60dc841bbe9fc7ea84852e,
