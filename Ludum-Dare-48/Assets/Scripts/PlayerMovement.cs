@@ -56,7 +56,11 @@ public class PlayerMovement : MonoBehaviour
             movingAnim.SetBool("isMoving", false);
 
         if (isFlying && IsTouchingGround())
+        {
             isFlying = false;
+            thrusterAnim.SetBool("isFlying", false);
+            UseHorizontalDrill();
+        }
 
         // Check for mining state
         if (!isInMiningState && !isFlying && rb.velocity.magnitude == 0)
@@ -100,6 +104,8 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetKey(KeyCode.W))
         {
             isFlying = true;
+            thrusterAnim.SetBool("isFlying", true);
+            UseThruster();
             rb.AddForce(new Vector2(0f, forceSpeed * Time.fixedDeltaTime * 0.8f));
         }
 
@@ -112,7 +118,7 @@ public class PlayerMovement : MonoBehaviour
 
     private bool IsTouchingGround()
     {
-        return Physics2D.Raycast(thrusterGO.transform.position, Vector2.down).distance == 0;
+        return Physics2D.Raycast(thrusterGO.transform.position, Vector2.down, Mathf.Infinity, LayerMask.GetMask("Default")).distance == 0;
     }
 
     private void SwitchDirection()
@@ -145,11 +151,25 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    private void SetMiningDownDrillState(bool state)
+    private void UseHorizontalDrill()
     {
-        Transform graphics = transform.GetChild(0);
-        horizontalDrillGO.gameObject.SetActive(!state);
-        downDrillGO.gameObject.SetActive(state);
+        horizontalDrillGO.gameObject.SetActive(true);
+        downDrillGO.gameObject.SetActive(false);
+        thrusterGO.SetActive(false);
+    }
+
+    private void UseDownDrill()
+    {
+        downDrillGO.gameObject.SetActive(true);
+        horizontalDrillGO.gameObject.SetActive(false);
+        thrusterGO.SetActive(false);
+    }
+
+    private void UseThruster()
+    {
+        thrusterGO.SetActive(true);
+        downDrillGO.gameObject.SetActive(false);
+        horizontalDrillGO.gameObject.SetActive(false);
     }
 
     private IEnumerator IEStartMining(Vector2Int startPos, Vector2Int direction)
@@ -203,7 +223,7 @@ public class PlayerMovement : MonoBehaviour
         downDrillAnim.SetTrigger("StopMining");
 
         isInMiningState = false;
-        SetMiningDownDrillState(false);
+        UseHorizontalDrill();
     }
 
     private void StartMining(Vector2Int startPos, Vector2Int direction)
@@ -213,7 +233,7 @@ public class PlayerMovement : MonoBehaviour
 
         isInMiningState = true;
         if (direction == Vector2Int.down)
-            SetMiningDownDrillState(true);
+            UseDownDrill();
 
         StartCoroutine(IEStartMining(startPos, direction));
     }

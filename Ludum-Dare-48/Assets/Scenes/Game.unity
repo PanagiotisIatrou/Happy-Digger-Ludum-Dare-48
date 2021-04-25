@@ -530,7 +530,7 @@ GameObject:
   - component: {fileID: 49606585}
   - component: {fileID: 49606584}
   - component: {fileID: 49606586}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: SellingStation
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -616,7 +616,7 @@ GameObject:
   - component: {fileID: 71244195}
   - component: {fileID: 71244194}
   - component: {fileID: 71244193}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: UpgradesStation
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15251,7 +15251,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1279992840}
   m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: -0.062, y: -0.558, z: 0}
+  m_LocalPosition: {x: -0.062, y: -0.558, z: -1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 675278579}
@@ -21407,7 +21407,7 @@ GameObject:
   - component: {fileID: 1600078013}
   - component: {fileID: 1600078015}
   - component: {fileID: 1600078014}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: FuelStation
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -23020,7 +23020,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2117743754}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0, y: -0.561, z: 1}
+  m_LocalPosition: {x: -0, y: -0.561, z: -1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 501034395}
