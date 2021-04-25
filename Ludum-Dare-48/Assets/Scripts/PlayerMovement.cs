@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    private FuelManager fuelManager;
     private float forceSpeed = 1000f;
     private float maxSpeed = 5f;
     private Rigidbody2D rb;
@@ -19,11 +20,18 @@ public class PlayerMovement : MonoBehaviour
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        fuelManager = GetComponent<FuelManager>();
         spriteTR = transform.GetChild(0);
     }
 
     private void Update()
     {
+        // Check for fuel consumption
+        if (isInMiningState || Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D))
+        {
+            fuelManager.DecreaseFuel(Time.deltaTime / 3);
+        }
+
         // Check for mining state
         if (!isInMiningState && rb.velocity.magnitude == 0)
         {
