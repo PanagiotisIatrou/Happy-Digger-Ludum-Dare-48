@@ -36,17 +36,6 @@ public class PlayerMovement : MonoBehaviour
             fuelManager.DecreaseFuel(Time.deltaTime / 3);
         }
 
-        // Sell inventory
-        if (Input.GetKeyDown(KeyCode.G))
-        {
-            int silverOres = inventory.GetNumberOfOresWithName("Silver");
-            int goldOres = inventory.GetNumberOfOresWithName("Gold");
-            moneyManager.AddMoney(5 * silverOres);
-            moneyManager.AddMoney(20 * goldOres);
-
-            inventory.RemoveAllOres();
-        }
-
         // Check for mining state
         if (!isInMiningState && rb.velocity.magnitude == 0)
         {
@@ -92,11 +81,6 @@ public class PlayerMovement : MonoBehaviour
         {
             rb.velocity = rb.velocity.normalized * maxSpeed;
         }
-    }
-
-    public Inventory GetInventory()
-    {
-        return inventory;
     }
 
     private void SwitchDirection()

@@ -85,7 +85,7 @@ public class GroundManager : MonoBehaviour
         {
             GameObject ore = Instance.specialTiles[position];
             Destroy(ore);
-            Instance.player.GetInventory().AddOre(ore.name);
+            Instance.player.GetComponent<Inventory>().AddOre(ore.name);
             Instance.specialTiles.Remove(position);
         }
     }

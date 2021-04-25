@@ -3,17 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class FuelStation : MonoBehaviour
+public class SellingStation : MonoBehaviour
 {
     public TextMeshProUGUI StationsText;
     public GameObject PlayerGO;
-    private FuelManager playerFuel;
     private MoneyManager playerMoney;
+    private Inventory playerInventory;
     private bool isInside = false;
 
     private void Start()
     {
-        playerFuel = PlayerGO.GetComponent<FuelManager>();
+        playerInventory = PlayerGO.GetComponent<Inventory>();
         playerMoney = PlayerGO.GetComponent<MoneyManager>();
     }
 
@@ -21,13 +21,12 @@ public class FuelStation : MonoBehaviour
     {
         if (isInside && Input.GetKeyDown(KeyCode.F))
         {
-            float fuelToBuy = playerFuel.GetMissingFuel();
-            int cost = Mathf.CeilToInt(fuelToBuy);
-            if (playerMoney.GetMoney() >= cost)
-            {
-                playerMoney.DecreaseMoney(cost);
-                playerFuel.FillFuel();
-            }
+            int silverOres = playerInventory.GetNumberOfOresWithName("Silver");
+            int goldOres = playerInventory.GetNumberOfOresWithName("Gold");
+            int totalEarnings = 5 * silverOres + 20 * goldOres;
+
+            playerMoney.AddMoney(totalEarnings);
+            playerInventory.RemoveAllOres();
         }
     }
 
@@ -44,9 +43,10 @@ public class FuelStation : MonoBehaviour
     {
         if (collision.name == "Player")
         {
-            float fuelToBuy = playerFuel.GetMissingFuel();
-            int cost = Mathf.CeilToInt(fuelToBuy);
-            StationsText.SetText("PRESS F TO REFUEL\nCOST: $" + cost);
+            int silverOres = playerInventory.GetNumberOfOresWithName("Silver");
+            int goldOres = playerInventory.GetNumberOfOresWithName("Gold");
+            int totalEarnings = 5 * silverOres + 20 * goldOres;
+            StationsText.SetText("PRESS F TO SELL ALL ORES\nEARNINGS: $" + totalEarnings);
         }
     }
 
