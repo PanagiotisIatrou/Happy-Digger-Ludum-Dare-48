@@ -33,6 +33,9 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
+        if (UpgradesStation.IsShopOpen())
+            return;
+
         // Check for fuel consumption
         if (isInMiningState || Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D))
         {
@@ -69,7 +72,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (isInMiningState)
+        if (isInMiningState || UpgradesStation.IsShopOpen())
             return;
 
         if (Input.GetKey(KeyCode.A))
