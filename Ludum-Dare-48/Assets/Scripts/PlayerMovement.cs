@@ -6,8 +6,6 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     private FuelManager fuelManager;
-    private MoneyManager moneyManager;
-    private Inventory inventory;
     private float forceSpeed = 1000f;
     private float maxSpeed = 5f;
     private Rigidbody2D rb;
@@ -18,6 +16,8 @@ public class PlayerMovement : MonoBehaviour
     private float switchTime = 0.07f;
     private Coroutine switchDirCoroutine;
     private Transform spriteTR;
+
+    private Animator movingAnim;
     private Animator horizontalDrillAnim;
     private Animator downDrillAnim;
 
@@ -25,9 +25,8 @@ public class PlayerMovement : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         fuelManager = GetComponent<FuelManager>();
-        moneyManager = GetComponent<MoneyManager>();
-        inventory = GetComponent<Inventory>();
         spriteTR = transform.GetChild(0);
+        movingAnim = spriteTR.GetComponent<Animator>();
         horizontalDrillAnim = spriteTR.GetChild(0).GetComponent<Animator>();
         downDrillAnim = spriteTR.GetChild(1).GetComponent<Animator>();
     }
@@ -39,6 +38,12 @@ public class PlayerMovement : MonoBehaviour
         {
             fuelManager.DecreaseFuel(Time.deltaTime / 3);
         }
+
+        if (isInMiningState || rb.velocity.magnitude > 0.5f)
+            movingAnim.SetBool("isMoving", true);
+        else
+            movingAnim.SetBool("isMoving", false);
+
 
         // Check for mining state
         if (!isInMiningState && rb.velocity.magnitude == 0)
