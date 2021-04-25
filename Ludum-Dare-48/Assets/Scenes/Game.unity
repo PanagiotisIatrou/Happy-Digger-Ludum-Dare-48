@@ -572,13 +572,27 @@ GameObject:
   m_Component:
   - component: {fileID: 71244195}
   - component: {fileID: 71244194}
+  - component: {fileID: 71244193}
   m_Layer: 0
-  m_Name: UpgradeStation
+  m_Name: UpgradesStation
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &71244193
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 71244192}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e6db4bcb4baa4f549b01c5983b34e98d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  StationsText: {fileID: 723231830}
 --- !u!61 &71244194
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -18874,7 +18888,7 @@ GameObject:
   - component: {fileID: 1382108114}
   - component: {fileID: 1382108113}
   m_Layer: 5
-  m_Name: UpgradeStationText
+  m_Name: UpgradesStationText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -18918,7 +18932,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: UPGRADE STATION
+  m_text: UPGRADES STATION
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8b5431927c60dc841bbe9fc7ea84852e, type: 2}
   m_sharedMaterial: {fileID: -6886146641333090755, guid: 8b5431927c60dc841bbe9fc7ea84852e,
@@ -18946,7 +18960,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 34.15
+  m_fontSize: 31.95
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1

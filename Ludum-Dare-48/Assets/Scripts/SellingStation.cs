@@ -35,6 +35,7 @@ public class SellingStation : MonoBehaviour
         if (collision.name == "Player")
         {
             isInside = true;
+            StationsText.SetText("PRESS F TO SELL ALL ORES\nEARNINGS: $0");
             StationsText.gameObject.SetActive(true);
         }
     }

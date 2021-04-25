@@ -36,6 +36,7 @@ public class FuelStation : MonoBehaviour
         if (collision.name == "Player")
         {
             isInside = true;
+            StationsText.SetText("PRESS F TO REFUEL\nCOST: $0");
             StationsText.gameObject.SetActive(true);
         }
     }
