@@ -24,6 +24,7 @@ public class PlayerMovement : MonoBehaviour
     private GameObject downDrillGO;
     private GameObject thrusterGO;
     private Animator thrusterAnim;
+    private CameraShakeInstance thrusterShake;
 
     private void Start()
     {
@@ -100,6 +101,18 @@ public class PlayerMovement : MonoBehaviour
             if (isDirLeft)
                 SwitchDirection();
             rb.AddForce(new Vector2(forceSpeed * Time.fixedDeltaTime, 0f));
+        }
+        if (Input.GetKeyDown(KeyCode.W))
+        {
+            thrusterShake = CameraShaker.Instance.StartShake(0.5f, 3, 0f);
+        }
+        if (!Input.GetKey(KeyCode.W))
+        {
+            foreach (CameraShakeInstance shake in CameraShaker.Instance.ShakeInstances)
+            {
+                shake.StartFadeOut(0f);
+            }
+            CameraShaker.Instance.ShakeInstances.Clear();
         }
         if (Input.GetKey(KeyCode.W))
         {
