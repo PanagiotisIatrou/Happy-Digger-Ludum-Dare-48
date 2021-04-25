@@ -8,6 +8,11 @@ public class MoneyManager : MonoBehaviour
     public TextMeshProUGUI moneyText;
     private int money = 100;
 
+    public int GetMoney()
+    {
+        return money;
+    }
+
     public void SetMoney(int amount)
     {
         money = amount;

@@ -16,6 +16,11 @@ public class FuelManager : MonoBehaviour
         fuel = maxFuel;
     }
 
+    public float GetMissingFuel()
+    {
+        return maxFuel - fuel;
+    }
+
     public void SetFuel(float amount)
     {
         fuel = amount;
