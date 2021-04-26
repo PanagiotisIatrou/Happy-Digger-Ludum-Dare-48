@@ -106,19 +106,18 @@ public class PlayerMovement : MonoBehaviour
         {
             thrusterShake = CameraShaker.Instance.StartShake(0.5f, 3, 0f);
         }
-        if (!Input.GetKey(KeyCode.W))
+        if (!Input.GetKey(KeyCode.W)) // Just checking for Input.GetKeyUp(KeyCode.W) rarely misses a shake
         {
+            thrusterAnim.SetBool("isThrusting", false);
             foreach (CameraShakeInstance shake in CameraShaker.Instance.ShakeInstances)
-            {
                 shake.StartFadeOut(0f);
-            }
             CameraShaker.Instance.ShakeInstances.Clear();
         }
         if (Input.GetKey(KeyCode.W))
         {
             isFlying = true;
-            thrusterAnim.SetBool("isFlying", true);
             UseThruster();
+            thrusterAnim.SetBool("isThrusting", true);
             rb.AddForce(new Vector2(0f, forceSpeed * Time.fixedDeltaTime * 0.8f));
         }
 
