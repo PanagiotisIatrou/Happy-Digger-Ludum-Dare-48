@@ -34,9 +34,12 @@ public class SellingStation : MonoBehaviour
             int silverOres = playerInventory.GetNumberOfOresWithName("Silver");
             int goldOres = playerInventory.GetNumberOfOresWithName("Gold");
             int totalEarnings = 5 * silverOres + 20 * goldOres;
-
-            playerMoney.AddMoney(totalEarnings);
-            playerInventory.RemoveAllOres();
+            if (totalEarnings > 0)
+            {
+                AudioSource.PlayClipAtPoint(GameManager.Instance.CoinPickupSound, PlayerGO.transform.position);
+                playerMoney.AddMoney(totalEarnings);
+                playerInventory.RemoveAllOres();
+            }
         }
     }
 
@@ -45,6 +48,7 @@ public class SellingStation : MonoBehaviour
         if (collision.name == "Player")
         {
             isInside = true;
+            AudioSource.PlayClipAtPoint(GameManager.Instance.ClickSound, collision.transform.position);
             StationsText.SetText("PRESS F TO SELL ALL ORES\nEARNINGS: $0");
             StationsText.gameObject.SetActive(true);
         }
@@ -66,6 +70,7 @@ public class SellingStation : MonoBehaviour
         if (collision.name == "Player")
         {
             isInside = false;
+            AudioSource.PlayClipAtPoint(GameManager.Instance.ClickSound, collision.transform.position);
             StationsText.gameObject.SetActive(false);
         }
     }

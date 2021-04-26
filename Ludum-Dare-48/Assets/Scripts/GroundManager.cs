@@ -88,6 +88,7 @@ public class GroundManager : MonoBehaviour
         if (Instance.specialTiles.ContainsKey(position))
         {
             GameObject ore = Instance.specialTiles[position];
+            AudioSource.PlayClipAtPoint(GameManager.Instance.CoinPickupSound, ore.transform.position);
             Destroy(ore);
             Instance.playerGO.GetComponent<Inventory>().AddOre(ore.name);
             Instance.specialTiles.Remove(position);

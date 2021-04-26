@@ -30,6 +30,7 @@ public class UpgradesStation : MonoBehaviour
     {
         if (isInside && Input.GetKeyDown(KeyCode.F))
         {
+            AudioSource.PlayClipAtPoint(GameManager.Instance.ClickSound, GameManager.GetCurrentPlayer().transform.position);
             SetShopState(true);
         }
     }
@@ -50,6 +51,7 @@ public class UpgradesStation : MonoBehaviour
         if (collision.name == "Player")
         {
             isInside = true;
+            AudioSource.PlayClipAtPoint(GameManager.Instance.ClickSound, collision.transform.position);
             StationsText.SetText("PRESS F TO ENTER SHOP");
             StationsText.gameObject.SetActive(true);
         }
@@ -60,6 +62,7 @@ public class UpgradesStation : MonoBehaviour
         if (collision.name == "Player")
         {
             isInside = false;
+            AudioSource.PlayClipAtPoint(GameManager.Instance.ClickSound, collision.transform.position);
             StationsText.gameObject.SetActive(false);
         }
     }

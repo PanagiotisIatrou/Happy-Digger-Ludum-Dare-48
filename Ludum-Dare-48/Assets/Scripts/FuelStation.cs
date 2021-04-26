@@ -35,6 +35,7 @@ public class FuelStation : MonoBehaviour
             int cost = Mathf.CeilToInt(fuelToBuy);
             if (playerMoney.GetMoney() >= cost)
             {
+                AudioSource.PlayClipAtPoint(GameManager.Instance.CoinPickupSound, PlayerGO.transform.position);
                 playerMoney.DecreaseMoney(cost);
                 playerFuel.FillFuel();
             }
@@ -46,6 +47,7 @@ public class FuelStation : MonoBehaviour
         if (collision.name == "Player")
         {
             isInside = true;
+            AudioSource.PlayClipAtPoint(GameManager.Instance.ClickSound, collision.transform.position);
             StationsText.SetText("PRESS F TO REFUEL\nCOST: $0");
             StationsText.gameObject.SetActive(true);
         }
@@ -66,6 +68,7 @@ public class FuelStation : MonoBehaviour
         if (collision.name == "Player")
         {
             isInside = false;
+            AudioSource.PlayClipAtPoint(GameManager.Instance.ClickSound, collision.transform.position);
             StationsText.gameObject.SetActive(false);
         }
     }

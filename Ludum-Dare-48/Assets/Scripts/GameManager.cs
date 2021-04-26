@@ -28,6 +28,8 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI MoneyText;
 
     public AudioClip ExplosionSound;
+    public AudioClip ClickSound;
+    public AudioClip CoinPickupSound;
 
     private GameObject playerGO;
 
