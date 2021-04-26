@@ -8,14 +8,14 @@ public class FuelManager : MonoBehaviour
 {
     private Slider fuelSlider;
     private TextMeshProUGUI fuelText;
-    private float maxFuel = 7f;
+    private float maxFuel = 8f;
     private float fuel;
 
     private void Start()
     {
         fuelSlider = GameManager.Instance.FuelSlider;
         fuelText = fuelSlider.transform.GetChild(2).GetComponent<TextMeshProUGUI>();
-        fuel = maxFuel;
+        SetFuel(maxFuel);
     }
 
     public float GetFuel()

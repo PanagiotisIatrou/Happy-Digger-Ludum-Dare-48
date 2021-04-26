@@ -20,6 +20,13 @@ public class FuelStation : MonoBehaviour
 
     private void Update()
     {
+        if (isInside)
+        {
+            float fuelToBuy = playerFuel.GetMissingFuel();
+            int cost = Mathf.CeilToInt(fuelToBuy);
+            StationsText.SetText("PRESS F TO REFUEL\nCOST: $" + cost);
+        }
+
         if (PlayerGO == null)
         {
             PlayerGO = GameManager.GetCurrentPlayer();
@@ -56,16 +63,6 @@ public class FuelStation : MonoBehaviour
             AudioSource.PlayClipAtPoint(GameManager.Instance.ClickSound, collision.transform.position);
             StationsText.SetText("PRESS F TO REFUEL\nCOST: $0");
             StationsText.gameObject.SetActive(true);
-        }
-    }
-
-    private void OnTriggerStay2D(Collider2D collision)
-    {
-        if (collision.name == "Player")
-        {
-            float fuelToBuy = playerFuel.GetMissingFuel();
-            int cost = Mathf.CeilToInt(fuelToBuy);
-            StationsText.SetText("PRESS F TO REFUEL\nCOST: $" + cost);
         }
     }
 

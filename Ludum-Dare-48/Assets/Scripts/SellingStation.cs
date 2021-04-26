@@ -20,6 +20,9 @@ public class SellingStation : MonoBehaviour
 
     private void Update()
     {
+        if (isInside)
+            StationsText.SetText("PRESS F TO SELL ALL ORES\nEARNINGS: $" + GetEarningsOfInventory());
+
         if (PlayerGO == null)
         {
             PlayerGO = GameManager.GetCurrentPlayer();
@@ -49,14 +52,6 @@ public class SellingStation : MonoBehaviour
             AudioSource.PlayClipAtPoint(GameManager.Instance.ClickSound, collision.transform.position);
             StationsText.SetText("PRESS F TO SELL ALL ORES\nEARNINGS: $0");
             StationsText.gameObject.SetActive(true);
-        }
-    }
-
-    private void OnTriggerStay2D(Collider2D collision)
-    {
-        if (collision.name == "Player")
-        {
-            StationsText.SetText("PRESS F TO SELL ALL ORES\nEARNINGS: $" + GetEarningsOfInventory());
         }
     }
 
