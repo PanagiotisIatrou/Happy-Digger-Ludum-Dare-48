@@ -19,6 +19,11 @@ public class AltitudeMeter : MonoBehaviour
             playerTR = playerGO.transform;
         }
 
-        AltitudeText.SetText(Mathf.RoundToInt(playerTR.transform.position.y) + "M");
+        AltitudeText.SetText(GetAltitude() + "M");
+    }
+
+    public int GetAltitude()
+    {
+        return Mathf.RoundToInt(playerTR.transform.position.y);
     }
 }

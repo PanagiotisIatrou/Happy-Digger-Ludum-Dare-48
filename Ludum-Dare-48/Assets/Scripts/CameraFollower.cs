@@ -17,7 +17,7 @@ public class CameraFollower : MonoBehaviour
 		}
 	}
 
-	public Transform targetTR;
+	private Transform targetTR;
 	private float positionSmoothTime = 0.05f;
 
 	public static void SetTarget(Transform tr)

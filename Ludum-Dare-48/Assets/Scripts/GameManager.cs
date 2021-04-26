@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.Rendering.PostProcessing;
 
 public class GameManager : MonoBehaviour
 {
@@ -30,6 +31,9 @@ public class GameManager : MonoBehaviour
     public AudioClip ExplosionSound;
     public AudioClip ClickSound;
     public AudioClip CoinPickupSound;
+
+    public PostProcessVolume PP;
+    public AltitudeMeter AltMeter;
 
     private GameObject playerGO;
 
