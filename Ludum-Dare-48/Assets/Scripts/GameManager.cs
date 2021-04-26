@@ -36,6 +36,8 @@ public class GameManager : MonoBehaviour
     public PostProcessVolume PP;
     public AltitudeMeter AltMeter;
 
+    public GameObject InventoryGO;
+
     private GameObject playerGO;
 
     private void Awake()

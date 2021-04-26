@@ -110,7 +110,7 @@ public class GroundManager : MonoBehaviour
                                     int r2 = Random.Range(0, 100);
                                     if (r2 <= levelOresChances[level, 0])
                                     {
-                                        oreGO.name = "Silver";
+                                        oreGO.name = "Iron";
                                     }
                                     else if (r2 <= levelOresChances[level, 1])
                                     {

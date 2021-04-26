@@ -6,6 +6,7 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     private FuelManager fuelManager;
+    private Inventory inventory;
     private static float forceSpeed = 1000f;
     private static float maxSpeed = 5f;
     private static float diggingTime = 1f;
@@ -33,6 +34,7 @@ public class PlayerMovement : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         fuelManager = GetComponent<FuelManager>();
+        inventory = GetComponent<Inventory>();
         spriteTR = transform.GetChild(0);
         movingAnim = spriteTR.GetComponent<Animator>();
         horizontalDrillAnim = spriteTR.GetChild(0).GetComponent<Animator>();
@@ -47,7 +49,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-        if (UpgradesStation.IsShopOpen())
+        if (UpgradesStation.IsShopOpen() || inventory.IsOpen())
             return;
 
         // Check for fuel consumption
@@ -91,7 +93,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (isInMiningState || UpgradesStation.IsShopOpen())
+        if (isInMiningState || UpgradesStation.IsShopOpen() || inventory.IsOpen())
             return;
 
         if (Input.GetKey(KeyCode.A))

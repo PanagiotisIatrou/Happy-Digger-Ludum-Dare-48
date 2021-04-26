@@ -67,7 +67,7 @@ public class SellingStation : MonoBehaviour
 
     private int GetEarningsOfInventory()
     {
-        int silverOres = playerInventory.GetNumberOfOresWithName("Silver");
+        int silverOres = playerInventory.GetNumberOfOresWithName("Iron");
         int goldOres = playerInventory.GetNumberOfOresWithName("Gold");
         int emeraldOres = playerInventory.GetNumberOfOresWithName("Emerald");
         int redIronOres = playerInventory.GetNumberOfOresWithName("Red Iron");

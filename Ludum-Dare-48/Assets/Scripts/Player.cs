@@ -29,7 +29,7 @@ public class Player : MonoBehaviour
         }
         else
         {
-            float vignetteIntensity = 0.1f + Mathf.Clamp(((float)Mathf.Abs(altitude) / 200f) * maxVignetteIntensity, 0f, 0.3f);
+            float vignetteIntensity = 0.1f + Mathf.Clamp(((float)Mathf.Abs(altitude) / 100f) * maxVignetteIntensity, 0f, 0.3f);
             vignette.intensity.Override(vignetteIntensity);
         }
 

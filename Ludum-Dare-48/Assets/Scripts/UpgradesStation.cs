@@ -28,7 +28,7 @@ public class UpgradesStation : MonoBehaviour
 
     private void Update()
     {
-        if (isInside && Input.GetKeyDown(KeyCode.F))
+        if (isInside && Input.GetKeyDown(KeyCode.F) && !GameManager.GetCurrentPlayer().GetComponent<Inventory>().IsOpen())
         {
             AudioSource.PlayClipAtPoint(GameManager.Instance.ClickSound, GameManager.GetCurrentPlayer().transform.position);
             SetShopState(true);

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ButtonListeners : MonoBehaviour
 {
-    public void OnXButtonListener()
+    public void OnXUpgradesButtonListener()
     {
         UpgradesStation.SetShopState(false);
     }
@@ -22,5 +22,20 @@ public class ButtonListeners : MonoBehaviour
     public void OnUpgradeEngineButtonListener()
     {
         Shop.UpgradeEngine();
+    }
+
+    public void OnInventoryButtonListener()
+    {
+        GameManager.GetCurrentPlayer().GetComponent<Inventory>().Open();
+    }
+
+    public void OnXInventoryButtonListener()
+    {
+        GameManager.GetCurrentPlayer().GetComponent<Inventory>().Close();
+    }
+
+    public void OnPauseButtonListener()
+    {
+
     }
 }
