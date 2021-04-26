@@ -94,13 +94,13 @@ public class PlayerMovement : MonoBehaviour
 
         if (Input.GetKey(KeyCode.A))
         {
-            if (!isDirLeft)
+            if (!isDirLeft && !Input.GetKey(KeyCode.D))
                 SwitchDirection();
             rb.AddForce(new Vector2(-forceSpeed * Time.fixedDeltaTime, 0f));
         }
         if (Input.GetKey(KeyCode.D))
         {
-            if (isDirLeft)
+            if (isDirLeft && !Input.GetKey(KeyCode.A))
                 SwitchDirection();
             rb.AddForce(new Vector2(forceSpeed * Time.fixedDeltaTime, 0f));
         }

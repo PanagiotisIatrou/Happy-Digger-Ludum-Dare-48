@@ -31,7 +31,7 @@ public class Shop : MonoBehaviour
     private int[] enginePrices = { 50, 200, 500, 1000 };
 
     private float[] fuelTankLevels = { 15, 30, 50, 100 };
-    private float[] drillLevels = { 0.75f, 0.562f, 0.4215f, 0.3161f };
+    private float[] drillLevels = { 0.75f, 0.562f, 0.45f, 0.35f };
     private float[] engineAccelerationLevels = { 1100, 1200, 1300, 1400 };
     private float[] engineMaxSpeedLevels = { 5.8f, 6.6f, 7.4f, 8.2f };
 
