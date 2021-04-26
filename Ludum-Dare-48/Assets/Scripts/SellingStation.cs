@@ -31,13 +31,7 @@ public class SellingStation : MonoBehaviour
 
         if (isInside && Input.GetKeyDown(KeyCode.F))
         {
-            int silverOres = playerInventory.GetNumberOfOresWithName("Silver");
-            int goldOres = playerInventory.GetNumberOfOresWithName("Gold");
-            int emeraldOres = playerInventory.GetNumberOfOresWithName("Emerald");
-            int redIronOres = playerInventory.GetNumberOfOresWithName("Red Iron");
-            int lapisOres = playerInventory.GetNumberOfOresWithName("Lapis");
-            int fossileOres = playerInventory.GetNumberOfOresWithName("Fossile");
-            int totalEarnings = 5 * silverOres + 20 * goldOres + 50 * emeraldOres + 75 * redIronOres + 100 * lapisOres + 200 * fossileOres;
+            int totalEarnings = GetEarningsOfInventory();
             if (totalEarnings > 0)
             {
                 AudioSource.PlayClipAtPoint(GameManager.Instance.CoinPickupSound, PlayerGO.transform.position);
@@ -62,10 +56,7 @@ public class SellingStation : MonoBehaviour
     {
         if (collision.name == "Player")
         {
-            int silverOres = playerInventory.GetNumberOfOresWithName("Silver");
-            int goldOres = playerInventory.GetNumberOfOresWithName("Gold");
-            int totalEarnings = 5 * silverOres + 20 * goldOres;
-            StationsText.SetText("PRESS F TO SELL ALL ORES\nEARNINGS: $" + totalEarnings);
+            StationsText.SetText("PRESS F TO SELL ALL ORES\nEARNINGS: $" + GetEarningsOfInventory());
         }
     }
 
@@ -77,5 +68,17 @@ public class SellingStation : MonoBehaviour
             AudioSource.PlayClipAtPoint(GameManager.Instance.ClickSound, collision.transform.position);
             StationsText.gameObject.SetActive(false);
         }
+    }
+
+    private int GetEarningsOfInventory()
+    {
+        int silverOres = playerInventory.GetNumberOfOresWithName("Silver");
+        int goldOres = playerInventory.GetNumberOfOresWithName("Gold");
+        int emeraldOres = playerInventory.GetNumberOfOresWithName("Emerald");
+        int redIronOres = playerInventory.GetNumberOfOresWithName("Red Iron");
+        int lapisOres = playerInventory.GetNumberOfOresWithName("Lapis");
+        int fossileOres = playerInventory.GetNumberOfOresWithName("Fossile");
+        int totalEarnings = 5 * silverOres + 20 * goldOres + 50 * emeraldOres + 75 * redIronOres + 100 * lapisOres + 200 * fossileOres;
+        return totalEarnings;
     }
 }

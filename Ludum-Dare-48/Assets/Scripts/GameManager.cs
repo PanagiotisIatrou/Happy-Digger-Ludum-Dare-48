@@ -31,6 +31,7 @@ public class GameManager : MonoBehaviour
     public AudioClip ExplosionSound;
     public AudioClip ClickSound;
     public AudioClip CoinPickupSound;
+    public AudioClip PowerupSound;
 
     public PostProcessVolume PP;
     public AltitudeMeter AltMeter;
@@ -62,6 +63,7 @@ public class GameManager : MonoBehaviour
     private IEnumerator IERespawnPlayer()
     {
         yield return new WaitForSeconds(1.5f);
+        AudioSource.PlayClipAtPoint(PowerupSound, new Vector3(4.5f, 1f, -1f));
         SpawnPlayer();
     }
 }

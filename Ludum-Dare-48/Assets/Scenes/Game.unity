@@ -456,6 +456,7 @@ MonoBehaviour:
   ExplosionSound: {fileID: 8300000, guid: 7f83fe486d4d4054dbcb5af60f8480e5, type: 3}
   ClickSound: {fileID: 8300000, guid: 0a1f5b1f5fde433489666c2604ac4401, type: 3}
   CoinPickupSound: {fileID: 8300000, guid: ff7e8f740376b304bb658632d1c180dd, type: 3}
+  PowerupSound: {fileID: 8300000, guid: 7aabb0c1fa7344c45941599e908453f9, type: 3}
   PP: {fileID: 519420033}
   AltMeter: {fileID: 193609320}
 --- !u!4 &8287481
@@ -6385,7 +6386,7 @@ TilemapRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_ChunkSize: {x: 32, y: 32, z: 32}
-  m_ChunkCullingBounds: {x: 1, y: 0, z: 0}
+  m_ChunkCullingBounds: {x: 1, y: 1, z: 0}
   m_MaxChunkCount: 16
   m_MaxFrameAge: 16
   m_SortOrder: 0
