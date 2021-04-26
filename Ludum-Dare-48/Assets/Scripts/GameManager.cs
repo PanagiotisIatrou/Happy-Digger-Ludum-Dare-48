@@ -26,15 +26,22 @@ public class GameManager : MonoBehaviour
     public GameObject ExplosionPrefab;
     public Slider FuelSlider;
     public TextMeshProUGUI MoneyText;
+    private GameObject playerGO;
 
-    private void Start()
+    private void Awake()
     {
         SpawnPlayer();
     }
 
+    public static GameObject GetCurrentPlayer()
+    {
+        return Instance.playerGO;
+    }
+
     private void SpawnPlayer()
     {
-        GameObject playerGO = Instantiate(PlayerPrefab, new Vector3(2.5f, 1f, -1f), Quaternion.identity);
+        playerGO = Instantiate(PlayerPrefab, new Vector3(2.5f, 1f, -1f), Quaternion.identity);
+        playerGO.name = "Player";
         CameraFollower.SetTarget(playerGO.transform);
     }
 

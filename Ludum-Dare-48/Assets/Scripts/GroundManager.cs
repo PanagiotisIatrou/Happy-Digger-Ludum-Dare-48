@@ -21,21 +21,25 @@ public class GroundManager : MonoBehaviour
     }
 
     public Tilemap tilemap;
-    public Transform PlayerTR;
     public RuleTile RuleTile;
     public Transform SpecialTilesHolder;
     public GameObject OrePrefab;
+    private GameObject playerGO;
     private Transform cameraTR;
     private Dictionary<Vector2Int, bool> minedTiles = new Dictionary<Vector2Int, bool>();
     private Dictionary<Vector2Int, GameObject> specialTiles = new Dictionary<Vector2Int, GameObject>();
 
     private void Start()
     {
+        playerGO = GameManager.GetCurrentPlayer();
         cameraTR = Camera.main.transform;
     }
 
     private void Update()
     {
+        if (playerGO == null)
+            playerGO = GameManager.GetCurrentPlayer();
+
         Vector2Int playerPos = new Vector2Int(Mathf.RoundToInt(cameraTR.position.x), Mathf.RoundToInt(cameraTR.position.y));
         for (int i = -8; i <= 8; i++)
         {
@@ -85,7 +89,7 @@ public class GroundManager : MonoBehaviour
         {
             GameObject ore = Instance.specialTiles[position];
             Destroy(ore);
-            Instance.PlayerTR.GetComponent<Inventory>().AddOre(ore.name);
+            Instance.playerGO.GetComponent<Inventory>().AddOre(ore.name);
             Instance.specialTiles.Remove(position);
         }
     }

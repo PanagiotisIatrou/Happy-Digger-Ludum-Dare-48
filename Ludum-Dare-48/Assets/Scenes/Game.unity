@@ -653,7 +653,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   StationsText: {fileID: 723231830}
-  PlayerGO: {fileID: 0}
 --- !u!1 &71244192
 GameObject:
   m_ObjectHideFlags: 0
@@ -3189,7 +3188,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'PRESS <X> TO REFUEL
+  m_text: 'PRESS F TO REFUEL
 
     COST: 100$'
   m_isRightToLeft: 0
@@ -6788,7 +6787,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   StationsText: {fileID: 723231830}
-  PlayerGO: {fileID: 0}
 --- !u!61 &1600078015
 BoxCollider2D:
   m_ObjectHideFlags: 0

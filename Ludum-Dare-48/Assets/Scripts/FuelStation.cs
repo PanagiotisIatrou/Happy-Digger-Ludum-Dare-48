@@ -6,19 +6,29 @@ using TMPro;
 public class FuelStation : MonoBehaviour
 {
     public TextMeshProUGUI StationsText;
-    public GameObject PlayerGO;
+    private GameObject PlayerGO;
     private FuelManager playerFuel;
     private MoneyManager playerMoney;
     private bool isInside = false;
 
     private void Start()
     {
+        PlayerGO = GameManager.GetCurrentPlayer();
         playerFuel = PlayerGO.GetComponent<FuelManager>();
         playerMoney = PlayerGO.GetComponent<MoneyManager>();
     }
 
     private void Update()
     {
+        if (PlayerGO == null)
+        {
+            PlayerGO = GameManager.GetCurrentPlayer();
+            if (PlayerGO == null)
+                return;
+            playerFuel = PlayerGO.GetComponent<FuelManager>();
+            playerMoney = PlayerGO.GetComponent<MoneyManager>();
+        }
+
         if (isInside && Input.GetKeyDown(KeyCode.F))
         {
             float fuelToBuy = playerFuel.GetMissingFuel();
