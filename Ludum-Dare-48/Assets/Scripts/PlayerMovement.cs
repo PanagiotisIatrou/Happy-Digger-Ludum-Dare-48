@@ -27,6 +27,7 @@ public class PlayerMovement : MonoBehaviour
     private Animator thrusterAnim;
 
     private AudioSource digSource;
+    private AudioSource thrusterSource;
 
     private void Start()
     {
@@ -41,6 +42,7 @@ public class PlayerMovement : MonoBehaviour
         thrusterGO = spriteTR.GetChild(2).gameObject;
         thrusterAnim = thrusterGO.GetComponent<Animator>();
         digSource = GetComponent<AudioSource>();
+        thrusterSource = thrusterGO.GetComponent<AudioSource>();
     }
 
     private void Update()
@@ -110,6 +112,7 @@ public class PlayerMovement : MonoBehaviour
         }
         if (!Input.GetKey(KeyCode.W)) // Just checking for Input.GetKeyUp(KeyCode.W) rarely misses a shake
         {
+            thrusterSource.Stop();
             thrusterAnim.SetBool("isThrusting", false);
             foreach (CameraShakeInstance shake in CameraShaker.Instance.ShakeInstances)
                 shake.StartFadeOut(0f);
@@ -119,15 +122,17 @@ public class PlayerMovement : MonoBehaviour
         {
             isFlying = true;
             UseThruster();
+            if (!thrusterSource.isPlaying)
+                thrusterSource.Play();
             thrusterAnim.SetBool("isThrusting", true);
             rb.AddForce(new Vector2(0f, forceSpeed * Time.fixedDeltaTime * 0.8f));
         }
 
         // Clamp speed
-        if (rb.velocity.magnitude >= maxSpeed)
-        {
-            rb.velocity = rb.velocity.normalized * maxSpeed;
-        }
+        if (Mathf.Abs(rb.velocity.x) >= maxSpeed)
+            rb.velocity = new Vector2(rb.velocity.x > 0 ? maxSpeed : - maxSpeed, rb.velocity.y);
+        if (Mathf.Abs(rb.velocity.y) >= maxSpeed)
+            rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y > 0 ? maxSpeed : -maxSpeed);
     }
 
     private bool IsTouchingGround()
