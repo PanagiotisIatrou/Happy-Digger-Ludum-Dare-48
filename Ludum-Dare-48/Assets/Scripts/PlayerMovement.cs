@@ -190,7 +190,6 @@ public class PlayerMovement : MonoBehaviour
     {
         Vector2 playerStartPos = transform.position;
         Vector2Int targetPos = startPos + direction;
-        GroundManager.AddMinedTile(targetPos);
 
         Vector2 targetPosFloats = targetPos;
         Vector2 diff = targetPos - playerStartPos;
@@ -227,6 +226,7 @@ public class PlayerMovement : MonoBehaviour
         transform.position = targetPosFloats;
 
         // Destroy mined tile
+        GroundManager.AddMinedTile(targetPos);
         GroundManager.DestroyTileInPosition(startPos + direction);
 
         // Reenable player physics

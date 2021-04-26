@@ -627,7 +627,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 49606583}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 9.83, y: 1, z: 0}
+  m_LocalPosition: {x: 8, y: 1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 704576208}
@@ -778,7 +778,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 71244192}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 18.355, y: 1, z: 0}
+  m_LocalPosition: {x: 16, y: 1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 725823381}
@@ -1642,6 +1642,7 @@ MonoBehaviour:
   tilemap: {fileID: 1250102893}
   RuleTile: {fileID: 11400000, guid: 839ba946120695447b1898aa34f98d3d, type: 2}
   BackgroundTile: {fileID: 11400000, guid: 1def7d253671de144967f60a3876cccf, type: 2}
+  IndestructibleTile: {fileID: 11400000, guid: 6d0f64a1958476b4098f1c1b7ccb44e0, type: 2}
   SpecialTilesHolder: {fileID: 1282868408}
   OrePrefabs:
   - {fileID: 5861422614790324934, guid: 3bfc0f458298d9f48ad4cc4e45025d42, type: 3}
@@ -1698,7 +1699,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 1356.2, y: 12}
+  m_AnchoredPosition: {x: 1196, y: 12}
   m_SizeDelta: {x: 68.35153, y: 39.08207}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &341912145
@@ -2502,7 +2503,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 0e89dbb84fb9ef94892113bf56ed32e3, type: 3}
+  m_audioClip: {fileID: 8300000, guid: dc53f1d7b6e1c9b47803a1fa218b438c, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.7
   m_Pitch: 1
@@ -7395,7 +7396,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 786.5, y: 12}
+  m_AnchoredPosition: {x: 664.6, y: 12}
   m_SizeDelta: {x: 68.35153, y: 39.08207}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1412206819

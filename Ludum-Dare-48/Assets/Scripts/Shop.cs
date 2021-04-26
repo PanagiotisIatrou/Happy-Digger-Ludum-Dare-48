@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 
 public class Shop : MonoBehaviour
@@ -31,8 +32,8 @@ public class Shop : MonoBehaviour
 
     private float[] fuelTankLevels = { 15, 30, 50, 100 };
     private float[] drillLevels = { 0.75f, 0.562f, 0.4215f, 0.3161f };
-    private float[] engineAccelerationLevels = { 1150, 1300, 1450, 1600 };
-    private float[] engineMaxSpeedLevels = { 6f, 7f, 8f, 9f };
+    private float[] engineAccelerationLevels = { 1100, 1200, 1300, 1400 };
+    private float[] engineMaxSpeedLevels = { 5.8f, 6.6f, 7.4f, 8.2f };
 
     private int currentFuelTankLevel = 0;
     private int currentDrillLevel = 0;
@@ -53,9 +54,14 @@ public class Shop : MonoBehaviour
             GameManager.GetCurrentPlayer().GetComponent<FuelManager>().SetMaxFuel(Instance.fuelTankLevels[Instance.currentFuelTankLevel - 1]);
 
             if (Instance.currentFuelTankLevel != Instance.fuelTankPrices.Length)
+            {
                 Instance.FuelTankUpgradeText.SetText("UPGRADE $" + Instance.fuelTankPrices[Instance.currentFuelTankLevel]);
+            }
             else
-                Instance.FuelTankUpgradeText.SetText("UPGRADE");
+            {
+                Instance.FuelTankUpgradeText.SetText("MAXED OUT");
+                Instance.FuelTankUpgradeText.transform.parent.GetComponent<Button>().interactable = false;
+            }
         }
     }
 
@@ -74,9 +80,14 @@ public class Shop : MonoBehaviour
             GameManager.GetCurrentPlayer().GetComponent<PlayerMovement>().SetDrillingTime(Instance.drillLevels[Instance.currentDrillLevel - 1]);
 
             if (Instance.currentDrillLevel != Instance.drillPrices.Length)
+            {
                 Instance.DrillUpgradeText.SetText("UPGRADE $" + Instance.drillPrices[Instance.currentDrillLevel]);
+            }
             else
-                Instance.DrillUpgradeText.SetText("UPGRADE");
+            {
+                Instance.DrillUpgradeText.SetText("MAXED OUT");
+                Instance.DrillUpgradeText.transform.parent.GetComponent<Button>().interactable = false;
+            }
         }
     }
 
@@ -94,9 +105,14 @@ public class Shop : MonoBehaviour
             AudioSource.PlayClipAtPoint(GameManager.Instance.CoinPickupSound, GameManager.GetCurrentPlayer().transform.position);
             GameManager.GetCurrentPlayer().GetComponent<PlayerMovement>().SetMaxSpeedAndAcceleration(Instance.engineMaxSpeedLevels[Instance.currentEngineLevel - 1], Instance.engineAccelerationLevels[Instance.currentEngineLevel - 1]);
             if (Instance.currentEngineLevel != Instance.enginePrices.Length)
+            {
                 Instance.EngineUpgradeText.SetText("UPGRADE $" + Instance.enginePrices[Instance.currentEngineLevel]);
+            }
             else
-                Instance.EngineUpgradeText.SetText("UPGRADE");
+            {
+                Instance.EngineUpgradeText.SetText("MAXED OUT");
+                Instance.EngineUpgradeText.transform.parent.GetComponent<Button>().interactable = false;
+            }
         }
     }
 }

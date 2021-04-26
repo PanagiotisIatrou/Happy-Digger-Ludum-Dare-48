@@ -23,6 +23,7 @@ public class GroundManager : MonoBehaviour
     public Tilemap tilemap;
     public RuleTile RuleTile;
     public Tile BackgroundTile;
+    public RuleTile IndestructibleTile;
     public Transform SpecialTilesHolder;
     public GameObject[] OrePrefabs;
     public GameObject[] FossilePrefabs;
@@ -46,18 +47,18 @@ public class GroundManager : MonoBehaviour
         indestructableTiles.Add(new Vector2Int(2, -1), true);
 
         // Selling Station base
+        indestructableTiles.Add(new Vector2Int(6, -1), true);
+        indestructableTiles.Add(new Vector2Int(7, -1), true);
         indestructableTiles.Add(new Vector2Int(8, -1), true);
         indestructableTiles.Add(new Vector2Int(9, -1), true);
         indestructableTiles.Add(new Vector2Int(10, -1), true);
-        indestructableTiles.Add(new Vector2Int(11, -1), true);
-        indestructableTiles.Add(new Vector2Int(12, -1), true);
 
         // Upgrades Station base
+        indestructableTiles.Add(new Vector2Int(14, -1), true);
+        indestructableTiles.Add(new Vector2Int(15, -1), true);
+        indestructableTiles.Add(new Vector2Int(16, -1), true);
         indestructableTiles.Add(new Vector2Int(17, -1), true);
         indestructableTiles.Add(new Vector2Int(18, -1), true);
-        indestructableTiles.Add(new Vector2Int(19, -1), true);
-        indestructableTiles.Add(new Vector2Int(20, -1), true);
-        indestructableTiles.Add(new Vector2Int(21, -1), true);
     }
 
     private void Update()
@@ -76,65 +77,74 @@ public class GroundManager : MonoBehaviour
 
                 if (!ExistsTileInPosition(pos) && !minedTiles.ContainsKey(pos))
                 {
-                    if (pos.y < -2)
+                    bool createIndestructible = Random.Range(0, 100) >= 90 && pos.y < -4;
+                    if (!createIndestructible)
                     {
-                        int r1 = Random.Range(0, 10);
-                        if (r1 == 9)
+                        if (pos.y < -2)
                         {
-                            GameObject oreGO;
-                            bool isFossile = Random.Range(0, 100) >= 98;
-                            if (isFossile)
+                            int r1 = Random.Range(0, 10);
+                            if (r1 == 9)
                             {
-                                oreGO = Instantiate(FossilePrefabs[Random.Range(0, FossilePrefabs.Length)], new Vector3(pos.x, pos.y, -1), Quaternion.identity, SpecialTilesHolder);
-                                oreGO.name = "Fossile";
-                            }
-                            else
-                            {
-                                int level;
-                                if (pos.y > -8)
-                                    level = 0;
-                                else if (pos.y > -20)
-                                    level = 1;
-                                else if (pos.y > -40)
-                                    level = 2;
-                                else if (pos.y > -80)
-                                    level = 3;
+                                GameObject oreGO;
+                                bool isFossile = Random.Range(0, 100) >= 98;
+                                if (isFossile)
+                                {
+                                    oreGO = Instantiate(FossilePrefabs[Random.Range(0, FossilePrefabs.Length)], new Vector3(pos.x, pos.y, -1), Quaternion.identity, SpecialTilesHolder);
+                                    oreGO.name = "Fossile";
+                                }
                                 else
-                                    level = 4;
+                                {
+                                    int level;
+                                    if (pos.y > -8)
+                                        level = 0;
+                                    else if (pos.y > -20)
+                                        level = 1;
+                                    else if (pos.y > -40)
+                                        level = 2;
+                                    else if (pos.y > -80)
+                                        level = 3;
+                                    else
+                                        level = 4;
 
-                                oreGO = Instantiate(OrePrefabs[Random.Range(0, OrePrefabs.Length)], new Vector3(pos.x, pos.y, -1), Quaternion.identity, SpecialTilesHolder);
-                                int r2 = Random.Range(0, 100);
-                                if (r2 <= levelOresChances[level, 0])
-                                {
-                                    oreGO.name = "Silver";
+                                    oreGO = Instantiate(OrePrefabs[Random.Range(0, OrePrefabs.Length)], new Vector3(pos.x, pos.y, -1), Quaternion.identity, SpecialTilesHolder);
+                                    int r2 = Random.Range(0, 100);
+                                    if (r2 <= levelOresChances[level, 0])
+                                    {
+                                        oreGO.name = "Silver";
+                                    }
+                                    else if (r2 <= levelOresChances[level, 1])
+                                    {
+                                        oreGO.name = "Gold";
+                                        oreGO.GetComponent<SpriteRenderer>().color = Color.yellow;
+                                    }
+                                    else if (r2 <= levelOresChances[level, 2])
+                                    {
+                                        oreGO.name = "Emerald";
+                                        oreGO.GetComponent<SpriteRenderer>().color = Color.green;
+                                    }
+                                    else if (r2 <= levelOresChances[level, 3])
+                                    {
+                                        oreGO.name = "Red Iron";
+                                        oreGO.GetComponent<SpriteRenderer>().color = Color.red;
+                                    }
+                                    else if (r2 <= levelOresChances[level, 4])
+                                    {
+                                        oreGO.name = "Lapis";
+                                        oreGO.GetComponent<SpriteRenderer>().color = Color.blue;
+                                    }
                                 }
-                                else if (r2 <= levelOresChances[level, 1])
-                                {
-                                    oreGO.name = "Gold";
-                                    oreGO.GetComponent<SpriteRenderer>().color = Color.yellow;
-                                }
-                                else if (r2 <= levelOresChances[level, 2])
-                                {
-                                    oreGO.name = "Emerald";
-                                    oreGO.GetComponent<SpriteRenderer>().color = Color.green;
-                                }
-                                else if (r2 <= levelOresChances[level, 3])
-                                {
-                                    oreGO.name = "Red Iron";
-                                    oreGO.GetComponent<SpriteRenderer>().color = Color.red;
-                                }
-                                else if (r2 <= levelOresChances[level, 4])
-                                {
-                                    oreGO.name = "Lapis";
-                                    oreGO.GetComponent<SpriteRenderer>().color = Color.blue;
-                                }
+
+                                specialTiles.Add(pos, oreGO);
                             }
-
-                            specialTiles.Add(pos, oreGO);
                         }
+
+                        tilemap.SetTile((Vector3Int)pos, RuleTile);
                     }
-                    
-                    tilemap.SetTile((Vector3Int)pos, RuleTile);
+                    else
+                    {
+                        tilemap.SetTile((Vector3Int)pos, IndestructibleTile);
+                        indestructableTiles.Add(pos, true);
+                    }
                 }
             }
         }
@@ -142,7 +152,7 @@ public class GroundManager : MonoBehaviour
 
     public static bool ExistsTileInPosition(Vector2Int position)
     {
-        return Instance.tilemap.HasTile((Vector3Int)position) && Instance.tilemap.GetTile((Vector3Int)position).name == "Rules";
+        return Instance.tilemap.HasTile((Vector3Int)position) && (Instance.tilemap.GetTile((Vector3Int)position).name == "Rules" || Instance.tilemap.GetTile((Vector3Int)position).name == "IndestructibleRuleTile");
     }
 
     public static void DestroyTileInPosition(Vector2Int position)

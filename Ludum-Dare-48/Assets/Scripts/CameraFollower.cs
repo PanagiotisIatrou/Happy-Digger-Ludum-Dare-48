@@ -33,6 +33,7 @@ public class CameraFollower : MonoBehaviour
 		Vector3 velocity = Vector3.zero;
 		Vector3 newPos = Vector3.SmoothDamp(transform.position, targetTR.position, ref velocity, positionSmoothTime);
 		newPos.z = -10;
+		newPos.y = Mathf.Clamp(newPos.y, Mathf.NegativeInfinity, 5f);
 		transform.position = newPos;
 	}
 }
