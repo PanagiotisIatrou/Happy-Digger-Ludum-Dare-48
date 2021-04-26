@@ -25,6 +25,7 @@ public class GroundManager : MonoBehaviour
     public Tile BackgroundTile;
     public Transform SpecialTilesHolder;
     public GameObject[] OrePrefabs;
+    public GameObject[] FossilePrefabs;
     private GameObject playerGO;
     private Transform cameraTR;
     private Dictionary<Vector2Int, bool> minedTiles = new Dictionary<Vector2Int, bool>();
@@ -80,42 +81,53 @@ public class GroundManager : MonoBehaviour
                         int r1 = Random.Range(0, 10);
                         if (r1 == 9)
                         {
-                            int level = -1;
-                            if (pos.y > -8)
-                                level = 0;
-                            else if (pos.y > -20)
-                                level = 1;
-                            else if (pos.y > -40)
-                                level = 2;
-                            else if (pos.y > -80)
-                                level = 3;
+                            GameObject oreGO;
+                            bool isFossile = Random.Range(0, 100) >= 98;
+                            if (isFossile)
+                            {
+                                oreGO = Instantiate(FossilePrefabs[Random.Range(0, FossilePrefabs.Length)], new Vector3(pos.x, pos.y, -1), Quaternion.identity, SpecialTilesHolder);
+                                oreGO.name = "Fossile";
+                            }
                             else
-                                level = 4;
-                            GameObject oreGO = Instantiate(OrePrefabs[Random.Range(0, OrePrefabs.Length)], new Vector3(pos.x, pos.y, -1), Quaternion.identity, SpecialTilesHolder);
-                            int r = Random.Range(0, 100);
-                            if (r <= levelOresChances[level, 0])
                             {
-                                oreGO.name = "Silver";
-                            }
-                            else if (r <= levelOresChances[level, 1])
-                            {
-                                oreGO.name = "Gold";
-                                oreGO.GetComponent<SpriteRenderer>().color = Color.yellow;
-                            }
-                            else if (r <= levelOresChances[level, 2])
-                            {
-                                oreGO.name = "Emerald";
-                                oreGO.GetComponent<SpriteRenderer>().color = Color.green;
-                            }
-                            else if (r <= levelOresChances[level, 3])
-                            {
-                                oreGO.name = "Red Iron";
-                                oreGO.GetComponent<SpriteRenderer>().color = Color.red;
-                            }
-                            else if (r <= levelOresChances[level, 4])
-                            {
-                                oreGO.name = "Lapis";
-                                oreGO.GetComponent<SpriteRenderer>().color = Color.blue;
+                                int level;
+                                if (pos.y > -8)
+                                    level = 0;
+                                else if (pos.y > -20)
+                                    level = 1;
+                                else if (pos.y > -40)
+                                    level = 2;
+                                else if (pos.y > -80)
+                                    level = 3;
+                                else
+                                    level = 4;
+
+                                oreGO = Instantiate(OrePrefabs[Random.Range(0, OrePrefabs.Length)], new Vector3(pos.x, pos.y, -1), Quaternion.identity, SpecialTilesHolder);
+                                int r2 = Random.Range(0, 100);
+                                if (r2 <= levelOresChances[level, 0])
+                                {
+                                    oreGO.name = "Silver";
+                                }
+                                else if (r2 <= levelOresChances[level, 1])
+                                {
+                                    oreGO.name = "Gold";
+                                    oreGO.GetComponent<SpriteRenderer>().color = Color.yellow;
+                                }
+                                else if (r2 <= levelOresChances[level, 2])
+                                {
+                                    oreGO.name = "Emerald";
+                                    oreGO.GetComponent<SpriteRenderer>().color = Color.green;
+                                }
+                                else if (r2 <= levelOresChances[level, 3])
+                                {
+                                    oreGO.name = "Red Iron";
+                                    oreGO.GetComponent<SpriteRenderer>().color = Color.red;
+                                }
+                                else if (r2 <= levelOresChances[level, 4])
+                                {
+                                    oreGO.name = "Lapis";
+                                    oreGO.GetComponent<SpriteRenderer>().color = Color.blue;
+                                }
                             }
 
                             specialTiles.Add(pos, oreGO);

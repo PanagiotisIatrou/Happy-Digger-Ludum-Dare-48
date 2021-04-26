@@ -106,7 +106,7 @@ public class PlayerMovement : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.W))
         {
-            CameraShaker.Instance.StartShake(0.3f, 3, 0f);
+            CameraShaker.Instance.StartShake(0.2f, 3, 0f);
         }
         if (!Input.GetKey(KeyCode.W)) // Just checking for Input.GetKeyUp(KeyCode.W) rarely misses a shake
         {
@@ -216,7 +216,7 @@ public class PlayerMovement : MonoBehaviour
 
         // Move the player
         float time = 0f;
-        CameraShaker.Instance.ShakeOnce(0.5f, 3, 1f, 1f);
+        CameraShaker.Instance.ShakeOnce(0.5f, 3, diggingTime, diggingTime);
         while (time < diggingTime)
         {
             Vector2 newPos = Vector2.MoveTowards(transform.position, targetPos, Time.deltaTime * (1f / diggingTime));

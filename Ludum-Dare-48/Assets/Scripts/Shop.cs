@@ -40,46 +40,63 @@ public class Shop : MonoBehaviour
 
     public static void UpgradeFuelTank()
     {
+        if (Instance.currentFuelTankLevel == Instance.fuelTankPrices.Length)
+             return;
+
         MoneyManager moneyManager = GameManager.GetCurrentPlayer().GetComponent<MoneyManager>();
         int price = Instance.fuelTankPrices[Instance.currentFuelTankLevel];
-        if (Instance.currentFuelTankLevel < Instance.fuelTankPrices.Length
-         && moneyManager.GetMoney() >= price)
+        if (moneyManager.GetMoney() >= price)
         {
             Instance.currentFuelTankLevel++;
             moneyManager.DecreaseMoney(price);
             AudioSource.PlayClipAtPoint(GameManager.Instance.CoinPickupSound, GameManager.GetCurrentPlayer().transform.position);
-            Instance.FuelTankUpgradeText.SetText("UPGRADE $" + Instance.fuelTankPrices[Instance.currentFuelTankLevel]);
             GameManager.GetCurrentPlayer().GetComponent<FuelManager>().SetMaxFuel(Instance.fuelTankLevels[Instance.currentFuelTankLevel - 1]);
+
+            if (Instance.currentFuelTankLevel != Instance.fuelTankPrices.Length)
+                Instance.FuelTankUpgradeText.SetText("UPGRADE $" + Instance.fuelTankPrices[Instance.currentFuelTankLevel]);
+            else
+                Instance.FuelTankUpgradeText.SetText("UPGRADE");
         }
     }
 
     public static void UpgradeDrill()
     {
+        if (Instance.currentDrillLevel == Instance.drillPrices.Length)
+            return;
+
         MoneyManager moneyManager = GameManager.GetCurrentPlayer().GetComponent<MoneyManager>();
         int price = Instance.drillPrices[Instance.currentDrillLevel];
-        if (Instance.currentDrillLevel < Instance.drillPrices.Length
-         && moneyManager.GetMoney() >= price)
+        if (moneyManager.GetMoney() >= price)
         {
             Instance.currentDrillLevel++;
             moneyManager.DecreaseMoney(price);
             AudioSource.PlayClipAtPoint(GameManager.Instance.CoinPickupSound, GameManager.GetCurrentPlayer().transform.position);
-            Instance.DrillUpgradeText.SetText("UPGRADE $" + Instance.drillPrices[Instance.currentDrillLevel]);
             GameManager.GetCurrentPlayer().GetComponent<PlayerMovement>().SetDrillingTime(Instance.drillLevels[Instance.currentDrillLevel - 1]);
+
+            if (Instance.currentDrillLevel != Instance.drillPrices.Length)
+                Instance.DrillUpgradeText.SetText("UPGRADE $" + Instance.drillPrices[Instance.currentDrillLevel]);
+            else
+                Instance.DrillUpgradeText.SetText("UPGRADE");
         }
     }
 
     public static void UpgradeEngine()
     {
+        if (Instance.currentEngineLevel == Instance.enginePrices.Length)
+            return;
+
         MoneyManager moneyManager = GameManager.GetCurrentPlayer().GetComponent<MoneyManager>();
         int price = Instance.enginePrices[Instance.currentEngineLevel];
-        if (Instance.currentEngineLevel < Instance.enginePrices.Length
-         && moneyManager.GetMoney() >= price)
+        if (moneyManager.GetMoney() >= price)
         {
             Instance.currentEngineLevel++;
             moneyManager.DecreaseMoney(price);
             AudioSource.PlayClipAtPoint(GameManager.Instance.CoinPickupSound, GameManager.GetCurrentPlayer().transform.position);
-            Instance.EngineUpgradeText.SetText("UPGRADE $" + Instance.enginePrices[Instance.currentEngineLevel]);
             GameManager.GetCurrentPlayer().GetComponent<PlayerMovement>().SetMaxSpeedAndAcceleration(Instance.engineMaxSpeedLevels[Instance.currentEngineLevel - 1], Instance.engineAccelerationLevels[Instance.currentEngineLevel - 1]);
+            if (Instance.currentEngineLevel != Instance.enginePrices.Length)
+                Instance.EngineUpgradeText.SetText("UPGRADE $" + Instance.enginePrices[Instance.currentEngineLevel]);
+            else
+                Instance.EngineUpgradeText.SetText("UPGRADE");
         }
     }
 }

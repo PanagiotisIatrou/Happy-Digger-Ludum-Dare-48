@@ -33,7 +33,11 @@ public class SellingStation : MonoBehaviour
         {
             int silverOres = playerInventory.GetNumberOfOresWithName("Silver");
             int goldOres = playerInventory.GetNumberOfOresWithName("Gold");
-            int totalEarnings = 5 * silverOres + 20 * goldOres;
+            int emeraldOres = playerInventory.GetNumberOfOresWithName("Emerald");
+            int redIronOres = playerInventory.GetNumberOfOresWithName("Red Iron");
+            int lapisOres = playerInventory.GetNumberOfOresWithName("Lapis");
+            int fossileOres = playerInventory.GetNumberOfOresWithName("Fossile");
+            int totalEarnings = 5 * silverOres + 20 * goldOres + 50 * emeraldOres + 75 * redIronOres + 100 * lapisOres + 200 * fossileOres;
             if (totalEarnings > 0)
             {
                 AudioSource.PlayClipAtPoint(GameManager.Instance.CoinPickupSound, PlayerGO.transform.position);
