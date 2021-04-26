@@ -49,7 +49,7 @@ public class GameManager : MonoBehaviour
 
     private void SpawnPlayer()
     {
-        playerGO = Instantiate(PlayerPrefab, new Vector3(2.5f, 1f, -1f), Quaternion.identity);
+        playerGO = Instantiate(PlayerPrefab, new Vector3(4.5f, 1f, -1f), Quaternion.identity);
         playerGO.name = "Player";
         CameraFollower.SetTarget(playerGO.transform);
     }

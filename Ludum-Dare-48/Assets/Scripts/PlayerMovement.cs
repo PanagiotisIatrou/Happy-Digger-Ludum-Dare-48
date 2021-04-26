@@ -247,7 +247,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void StartMining(Vector2Int startPos, Vector2Int direction)
     {
-        if (isInMiningState)
+        if (isInMiningState || GroundManager.IsTileIndestructable(startPos + direction))
             return;
 
         isInMiningState = true;

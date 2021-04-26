@@ -29,6 +29,7 @@ public class GroundManager : MonoBehaviour
     private Transform cameraTR;
     private Dictionary<Vector2Int, bool> minedTiles = new Dictionary<Vector2Int, bool>();
     private Dictionary<Vector2Int, GameObject> specialTiles = new Dictionary<Vector2Int, GameObject>();
+    private Dictionary<Vector2Int, bool> indestructableTiles = new Dictionary<Vector2Int, bool>();
 
     private int[,] levelOresChances = { { 100, 0, 0, 0, 0 }, { 70, 100, 0, 0, 0 }, { 30, 70, 100, 0, 0 }, { 20, 40, 70, 100, 0 }, { 10, 30, 50, 70, 100 } };
 
@@ -36,6 +37,26 @@ public class GroundManager : MonoBehaviour
     {
         playerGO = GameManager.GetCurrentPlayer();
         cameraTR = Camera.main.transform;
+
+        // Fuel Station base
+        indestructableTiles.Add(new Vector2Int(-1, -1), true);
+        indestructableTiles.Add(new Vector2Int(0, -1), true);
+        indestructableTiles.Add(new Vector2Int(1, -1), true);
+        indestructableTiles.Add(new Vector2Int(2, -1), true);
+
+        // Selling Station base
+        indestructableTiles.Add(new Vector2Int(8, -1), true);
+        indestructableTiles.Add(new Vector2Int(9, -1), true);
+        indestructableTiles.Add(new Vector2Int(10, -1), true);
+        indestructableTiles.Add(new Vector2Int(11, -1), true);
+        indestructableTiles.Add(new Vector2Int(12, -1), true);
+
+        // Upgrades Station base
+        indestructableTiles.Add(new Vector2Int(17, -1), true);
+        indestructableTiles.Add(new Vector2Int(18, -1), true);
+        indestructableTiles.Add(new Vector2Int(19, -1), true);
+        indestructableTiles.Add(new Vector2Int(20, -1), true);
+        indestructableTiles.Add(new Vector2Int(21, -1), true);
     }
 
     private void Update()
@@ -109,7 +130,7 @@ public class GroundManager : MonoBehaviour
 
     public static bool ExistsTileInPosition(Vector2Int position)
     {
-        return Instance.tilemap.HasTile((Vector3Int)position);
+        return Instance.tilemap.HasTile((Vector3Int)position) && Instance.tilemap.GetTile((Vector3Int)position).name == "Rules";
     }
 
     public static void DestroyTileInPosition(Vector2Int position)
@@ -128,5 +149,10 @@ public class GroundManager : MonoBehaviour
     public static void AddMinedTile(Vector2Int position)
     {
         Instance.minedTiles.Add(position, true);
+    }
+
+    public static bool IsTileIndestructable(Vector2Int position)
+    {
+        return Instance.indestructableTiles.ContainsKey(position);
     }
 }
