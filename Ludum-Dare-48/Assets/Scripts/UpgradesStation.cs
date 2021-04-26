@@ -20,6 +20,7 @@ public class UpgradesStation : MonoBehaviour
         }
 
     }
+
     public TextMeshProUGUI StationsText;
     public GameObject UpgradesPanelGO;
     private bool isInside = false;

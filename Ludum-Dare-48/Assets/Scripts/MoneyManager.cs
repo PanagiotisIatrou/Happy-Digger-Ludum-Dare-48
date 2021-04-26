@@ -5,8 +5,13 @@ using TMPro;
 
 public class MoneyManager : MonoBehaviour
 {
-    public TextMeshProUGUI moneyText;
+    private TextMeshProUGUI moneyText;
     private int money = 100;
+
+    private void Start()
+    {
+        moneyText = GameManager.Instance.MoneyText;
+    }
 
     public int GetMoney()
     {

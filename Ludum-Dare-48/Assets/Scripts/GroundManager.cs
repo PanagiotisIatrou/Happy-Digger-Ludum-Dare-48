@@ -25,18 +25,18 @@ public class GroundManager : MonoBehaviour
     public RuleTile RuleTile;
     public Transform SpecialTilesHolder;
     public GameObject OrePrefab;
+    private Transform cameraTR;
     private Dictionary<Vector2Int, bool> minedTiles = new Dictionary<Vector2Int, bool>();
     private Dictionary<Vector2Int, GameObject> specialTiles = new Dictionary<Vector2Int, GameObject>();
-    private PlayerMovement player;
 
     private void Start()
     {
-        player = PlayerTR.GetComponent<PlayerMovement>();
+        cameraTR = Camera.main.transform;
     }
 
     private void Update()
     {
-        Vector2Int playerPos = new Vector2Int(Mathf.RoundToInt(PlayerTR.position.x), Mathf.RoundToInt(PlayerTR.position.y));
+        Vector2Int playerPos = new Vector2Int(Mathf.RoundToInt(cameraTR.position.x), Mathf.RoundToInt(cameraTR.position.y));
         for (int i = -8; i <= 8; i++)
         {
             for (int j = -8; j <= 8; j++)
@@ -85,7 +85,7 @@ public class GroundManager : MonoBehaviour
         {
             GameObject ore = Instance.specialTiles[position];
             Destroy(ore);
-            Instance.player.GetComponent<Inventory>().AddOre(ore.name);
+            Instance.PlayerTR.GetComponent<Inventory>().AddOre(ore.name);
             Instance.specialTiles.Remove(position);
         }
     }

@@ -6,14 +6,21 @@ using TMPro;
 
 public class FuelManager : MonoBehaviour
 {
-    public TextMeshProUGUI fuelText;
-    public Slider fuelBar;
+    private Slider fuelSlider;
+    private TextMeshProUGUI fuelText;
     private float maxFuel = 10f;
     private float fuel;
 
     private void Start()
     {
+        fuelSlider = GameManager.Instance.FuelSlider;
+        fuelText = fuelSlider.transform.GetChild(2).GetComponent<TextMeshProUGUI>();
         fuel = maxFuel;
+    }
+
+    public float GetFuel()
+    {
+        return fuel;
     }
 
     public float GetMissingFuel()
@@ -26,7 +33,7 @@ public class FuelManager : MonoBehaviour
         fuel = amount;
         fuel = Mathf.Clamp(fuel, 0f, maxFuel);
         fuelText.SetText("FUEL: " + Mathf.RoundToInt(fuel));
-        fuelBar.value = (fuel / maxFuel);
+        fuelSlider.value = (fuel / maxFuel);
     }
 
     public void DecreaseFuel(float amount)
@@ -34,7 +41,7 @@ public class FuelManager : MonoBehaviour
         fuel -= amount;
         fuel = Mathf.Clamp(fuel, 0f, maxFuel);
         fuelText.SetText("FUEL: " + Mathf.RoundToInt(fuel));
-        fuelBar.value = (fuel / maxFuel);
+        fuelSlider.value = (fuel / maxFuel);
     }
 
     public void AddFuel(float amount)
@@ -42,7 +49,7 @@ public class FuelManager : MonoBehaviour
         fuel += amount;
         fuel = Mathf.Clamp(fuel, 0f, maxFuel);
         fuelText.SetText("FUEL: " + Mathf.RoundToInt(fuel));
-        fuelBar.value = (fuel / maxFuel);
+        fuelSlider.value = (fuel / maxFuel);
     }
 
     public void FillFuel()
@@ -50,6 +57,6 @@ public class FuelManager : MonoBehaviour
         fuel = maxFuel;
         fuel = Mathf.Clamp(fuel, 0f, maxFuel);
         fuelText.SetText("FUEL: " + Mathf.RoundToInt(fuel));
-        fuelBar.value = (fuel / maxFuel);
+        fuelSlider.value = (fuel / maxFuel);
     }
 }

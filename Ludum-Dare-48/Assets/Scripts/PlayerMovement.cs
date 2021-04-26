@@ -59,7 +59,6 @@ public class PlayerMovement : MonoBehaviour
         if (isFlying && IsTouchingGround())
         {
             isFlying = false;
-            thrusterAnim.SetBool("isFlying", false);
             UseHorizontalDrill();
         }
 

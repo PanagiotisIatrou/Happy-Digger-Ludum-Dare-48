@@ -20,13 +20,16 @@ public class CameraFollower : MonoBehaviour
 	public Transform targetTR;
 	private float positionSmoothTime = 0.05f;
 
-	public static void ChangeTarget(Transform tr)
+	public static void SetTarget(Transform tr)
 	{
 		Instance.targetTR = tr;
 	}
 
 	private void FixedUpdate()
 	{
+		if (targetTR == null)
+			return;
+
 		Vector3 velocity = Vector3.zero;
 		Vector3 newPos = Vector3.SmoothDamp(transform.position, targetTR.position, ref velocity, positionSmoothTime);
 		newPos.z = -10;
