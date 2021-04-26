@@ -429,7 +429,7 @@ GameObject:
   - component: {fileID: 8287481}
   - component: {fileID: 8287480}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: GameManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1290,7 +1290,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tilemap: {fileID: 1250102893}
-  PlayerTR: {fileID: 0}
   RuleTile: {fileID: 11400000, guid: 839ba946120695447b1898aa34f98d3d, type: 2}
   SpecialTilesHolder: {fileID: 1282868408}
   OrePrefab: {fileID: 5861422614790324934, guid: 3bfc0f458298d9f48ad4cc4e45025d42,

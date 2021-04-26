@@ -29,6 +29,7 @@ public class Player : MonoBehaviour
         died = true;
         GameObject explosion = Instantiate(GameManager.Instance.ExplosionPrefab, transform.position, Quaternion.identity);
         explosion.transform.position += new Vector3(0, 0, -1);
+        AudioSource.PlayClipAtPoint(GameManager.Instance.ExplosionSound, transform.position);
         Destroy(gameObject);
         CameraShaker.Instance.ShakeOnce(3f, 2f, 0.25f, 0.25f);
         GameManager.RespawnPlayer();

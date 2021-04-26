@@ -24,7 +24,8 @@ public class PlayerMovement : MonoBehaviour
     private GameObject downDrillGO;
     private GameObject thrusterGO;
     private Animator thrusterAnim;
-    private CameraShakeInstance thrusterShake;
+
+    private AudioSource digSource;
 
     private void Start()
     {
@@ -38,6 +39,7 @@ public class PlayerMovement : MonoBehaviour
         downDrillGO = spriteTR.GetChild(1).gameObject;
         thrusterGO = spriteTR.GetChild(2).gameObject;
         thrusterAnim = thrusterGO.GetComponent<Animator>();
+        digSource = GetComponent<AudioSource>();
     }
 
     private void Update()
@@ -103,7 +105,7 @@ public class PlayerMovement : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.W))
         {
-            thrusterShake = CameraShaker.Instance.StartShake(0.5f, 3, 0f);
+            CameraShaker.Instance.StartShake(0.5f, 3, 0f);
         }
         if (!Input.GetKey(KeyCode.W)) // Just checking for Input.GetKeyUp(KeyCode.W) rarely misses a shake
         {
@@ -206,12 +208,17 @@ public class PlayerMovement : MonoBehaviour
         horizontalDrillAnim.SetTrigger("StartMining");
         downDrillAnim.SetTrigger("StartMining");
 
+        // Play SFX
+        float initialLength = digSource.clip.length;
+        digSource.pitch = 1f / initialLength / 2 * (1f / 0.5f);
+        digSource.Play();
+
         // Move the player
         float time = 0f;
         CameraShaker.Instance.ShakeOnce(0.5f, 3, 1f, 1f);
-        while (time < 1f)
+        while (time < 0.5f)
         {
-            Vector2 newPos = Vector2.MoveTowards(transform.position, targetPos, Time.deltaTime);
+            Vector2 newPos = Vector2.MoveTowards(transform.position, targetPos, Time.deltaTime * (1f / 0.5f));
             transform.position = new Vector3(newPos.x, newPos.y, -2);
             time += Time.deltaTime;
             yield return null;

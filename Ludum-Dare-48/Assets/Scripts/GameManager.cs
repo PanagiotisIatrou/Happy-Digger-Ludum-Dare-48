@@ -26,6 +26,9 @@ public class GameManager : MonoBehaviour
     public GameObject ExplosionPrefab;
     public Slider FuelSlider;
     public TextMeshProUGUI MoneyText;
+
+    public AudioClip ExplosionSound;
+
     private GameObject playerGO;
 
     private void Awake()
