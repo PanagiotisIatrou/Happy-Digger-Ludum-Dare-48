@@ -33,11 +33,17 @@ public class FuelStation : MonoBehaviour
         {
             float fuelToBuy = playerFuel.GetMissingFuel();
             int cost = Mathf.CeilToInt(fuelToBuy);
+            float perc = (float)playerMoney.GetMoney() / cost;
+            AudioSource.PlayClipAtPoint(GameManager.Instance.CoinPickupSound, PlayerGO.transform.position);
             if (playerMoney.GetMoney() >= cost)
             {
-                AudioSource.PlayClipAtPoint(GameManager.Instance.CoinPickupSound, PlayerGO.transform.position);
-                playerMoney.DecreaseMoney(cost);
                 playerFuel.FillFuel();
+                playerMoney.DecreaseMoney(cost);
+            }
+            else if (playerMoney.GetMoney() > 0)
+            {
+                playerFuel.AddFuel(fuelToBuy * perc);
+                playerMoney.DecreaseMoney(playerMoney.GetMoney());
             }
         }
     }

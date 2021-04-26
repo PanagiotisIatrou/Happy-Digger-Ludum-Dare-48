@@ -6,8 +6,9 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     private FuelManager fuelManager;
-    private float forceSpeed = 1000f;
-    private float maxSpeed = 5f;
+    private static float forceSpeed = 1000f;
+    private static float maxSpeed = 5f;
+    private static float diggingTime = 1f;
     private Rigidbody2D rb;
 
     private bool isInMiningState = false;
@@ -105,7 +106,7 @@ public class PlayerMovement : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.W))
         {
-            CameraShaker.Instance.StartShake(0.5f, 3, 0f);
+            CameraShaker.Instance.StartShake(0.3f, 3, 0f);
         }
         if (!Input.GetKey(KeyCode.W)) // Just checking for Input.GetKeyUp(KeyCode.W) rarely misses a shake
         {
@@ -210,15 +211,15 @@ public class PlayerMovement : MonoBehaviour
 
         // Play SFX
         float initialLength = digSource.clip.length;
-        digSource.pitch = 1f / initialLength / 2 * (1f / 0.5f);
+        digSource.pitch = 1f / initialLength / 1.5f * (1f / diggingTime);
         digSource.Play();
 
         // Move the player
         float time = 0f;
         CameraShaker.Instance.ShakeOnce(0.5f, 3, 1f, 1f);
-        while (time < 0.5f)
+        while (time < diggingTime)
         {
-            Vector2 newPos = Vector2.MoveTowards(transform.position, targetPos, Time.deltaTime * (1f / 0.5f));
+            Vector2 newPos = Vector2.MoveTowards(transform.position, targetPos, Time.deltaTime * (1f / diggingTime));
             transform.position = new Vector3(newPos.x, newPos.y, -2);
             time += Time.deltaTime;
             yield return null;
@@ -254,5 +255,16 @@ public class PlayerMovement : MonoBehaviour
             UseDownDrill();
 
         StartCoroutine(IEStartMining(startPos, direction));
+    }
+
+    public void SetDrillingTime(float time)
+    {
+        diggingTime = time;
+    }
+
+    public void SetMaxSpeedAndAcceleration(float maxSpeed, float acceleration)
+    {
+        PlayerMovement.maxSpeed = maxSpeed;
+        forceSpeed = acceleration;
     }
 }

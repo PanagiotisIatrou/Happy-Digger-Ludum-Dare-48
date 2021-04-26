@@ -8,7 +8,7 @@ public class FuelManager : MonoBehaviour
 {
     private Slider fuelSlider;
     private TextMeshProUGUI fuelText;
-    private float maxFuel = 10f;
+    private float maxFuel = 7f;
     private float fuel;
 
     private void Start()
@@ -57,6 +57,12 @@ public class FuelManager : MonoBehaviour
         fuel = maxFuel;
         fuel = Mathf.Clamp(fuel, 0f, maxFuel);
         fuelText.SetText("FUEL: " + Mathf.RoundToInt(fuel));
+        fuelSlider.value = (fuel / maxFuel);
+    }
+
+    public void SetMaxFuel(float amount)
+    {
+        maxFuel = amount;
         fuelSlider.value = (fuel / maxFuel);
     }
 }

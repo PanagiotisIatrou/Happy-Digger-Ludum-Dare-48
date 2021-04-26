@@ -8,4 +8,19 @@ public class ButtonListeners : MonoBehaviour
     {
         UpgradesStation.SetShopState(false);
     }
+
+    public void OnUpgradeFuelTankButtonListener()
+    {
+        Shop.UpgradeFuelTank();
+    }
+
+    public void OnUpgradeDrillButtonListener()
+    {
+        Shop.UpgradeDrill();
+    }
+
+    public void OnUpgradeEngineButtonListener()
+    {
+        Shop.UpgradeEngine();
+    }
 }
