@@ -11,13 +11,6 @@ public class FuelStation : MonoBehaviour
     private MoneyManager playerMoney;
     private bool isInside = false;
 
-    private void Start()
-    {
-        PlayerGO = GameManager.GetCurrentPlayer();
-        playerFuel = PlayerGO.GetComponent<FuelManager>();
-        playerMoney = PlayerGO.GetComponent<MoneyManager>();
-    }
-
     private void Update()
     {
         if (isInside)

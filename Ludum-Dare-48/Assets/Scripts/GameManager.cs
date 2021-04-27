@@ -38,12 +38,12 @@ public class GameManager : MonoBehaviour
 
     public GameObject InventoryGO;
 
+    public CanvasGroup StartMenuGroup;
+    public CanvasGroup InterfaceGroup;
+
     private GameObject playerGO;
 
-    private void Awake()
-    {
-        SpawnPlayer();
-    }
+    private bool gameStarted = false;
 
     public static GameObject GetCurrentPlayer()
     {
@@ -66,6 +66,27 @@ public class GameManager : MonoBehaviour
     {
         yield return new WaitForSeconds(1.5f);
         AudioSource.PlayClipAtPoint(PowerupSound, new Vector3(4.5f, 1f, -1f));
+        SpawnPlayer();
+    }
+
+    public static void StartGame()
+    {
+        if (Instance.gameStarted)
+            return;
+
+        Instance.gameStarted = true;
+        Instance.StartCoroutine(Instance.IEStartGame());
+    }
+
+    private IEnumerator IEStartGame()
+    {
+        while (StartMenuGroup.alpha > 0f && InterfaceGroup.alpha < 1f)
+        {
+            StartMenuGroup.alpha -= 1f / 60f;
+            InterfaceGroup.alpha += 1f / 60f;
+            yield return null;
+        }
+
         SpawnPlayer();
     }
 }

@@ -11,13 +11,6 @@ public class SellingStation : MonoBehaviour
     private Inventory playerInventory;
     private bool isInside = false;
 
-    private void Start()
-    {
-        PlayerGO = GameManager.GetCurrentPlayer();
-        playerInventory = PlayerGO.GetComponent<Inventory>();
-        playerMoney = PlayerGO.GetComponent<MoneyManager>();
-    }
-
     private void Update()
     {
         if (isInside)
