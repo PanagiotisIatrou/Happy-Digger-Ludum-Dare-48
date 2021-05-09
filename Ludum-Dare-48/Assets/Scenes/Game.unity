@@ -462,6 +462,7 @@ MonoBehaviour:
   InventoryGO: {fileID: 580385762}
   StartMenuGroup: {fileID: 1142999804}
   InterfaceGroup: {fileID: 442024275}
+  MoneyManagerSC: {fileID: 2085960584}
 --- !u!4 &8287481
 Transform:
   m_ObjectHideFlags: 0
@@ -2286,7 +2287,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 375007991}
-  - component: {fileID: 375007990}
   m_Layer: 0
   m_Name: CameraShaker
   m_TagString: Untagged
@@ -2294,22 +2294,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &375007990
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 375007989}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2ab8353b5ebd32545867da143199a814, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  DefaultPosInfluence: {x: 0.15, y: 0.15, z: 0.15}
-  DefaultRotInfluence: {x: 0, y: 0, z: 1}
-  RestPositionOffset: {x: 0, y: 0, z: 0}
-  RestRotationOffset: {x: 0, y: 0, z: 0}
 --- !u!4 &375007991
 Transform:
   m_ObjectHideFlags: 0
@@ -2520,7 +2504,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0.00012207}
+  m_AnchoredPosition: {x: 0, y: -13}
   m_SizeDelta: {x: 800, y: 800.00024}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!225 &442024275
@@ -2632,6 +2616,7 @@ GameObject:
   - component: {fileID: 519420033}
   - component: {fileID: 519420034}
   - component: {fileID: 519420035}
+  - component: {fileID: 519420036}
   m_Layer: 9
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -2659,6 +2644,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bdeeba753b0d0264a85ad2b7a38699fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  shaker: {fileID: 519420036}
 --- !u!20 &519420031
 Camera:
   m_ObjectHideFlags: 0
@@ -2889,6 +2875,22 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &519420036
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 519420028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ab8353b5ebd32545867da143199a814, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DefaultPosInfluence: {x: 0.15, y: 0.15, z: 0.15}
+  DefaultRotInfluence: {x: 0, y: 0, z: 1}
+  RestPositionOffset: {x: 0, y: 0, z: -10}
+  RestRotationOffset: {x: 0, y: 0, z: 0}
 --- !u!1 &535679202
 GameObject:
   m_ObjectHideFlags: 0
@@ -9191,7 +9193,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PausePanelGO: {fileID: 1569523872}
-  MainTheme: {fileID: 519420035}
 --- !u!1 &1394428223
 GameObject:
   m_ObjectHideFlags: 0
@@ -13370,6 +13371,7 @@ GameObject:
   - component: {fileID: 2085960581}
   - component: {fileID: 2085960583}
   - component: {fileID: 2085960582}
+  - component: {fileID: 2085960584}
   m_Layer: 5
   m_Name: MoneyText
   m_TagString: Untagged
@@ -13493,6 +13495,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2085960580}
   m_CullTransparentMesh: 0
+--- !u!114 &2085960584
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2085960580}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f88c88c91f323344b8be3f9f929d3c82, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2086757526
 GameObject:
   m_ObjectHideFlags: 0

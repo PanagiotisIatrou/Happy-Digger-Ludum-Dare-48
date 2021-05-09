@@ -222,7 +222,7 @@ public class PlayerMovement : MonoBehaviour
 
         // Move the player
         float time = 0f;
-        CameraShaker.Instance.ShakeOnce(0.5f, 3, diggingTime, diggingTime);
+        CameraShaker.Instance.ShakeOnce(0.35f, 3, diggingTime, diggingTime);
         while (time < diggingTime)
         {
             Vector2 newPos = Vector2.MoveTowards(transform.position, targetPos, Time.deltaTime * (1f / diggingTime));

@@ -6,7 +6,7 @@ using TMPro;
 public class MoneyManager : MonoBehaviour
 {
     private TextMeshProUGUI moneyText;
-    private int money = 50;
+    private static int money = 50;
 
     private void Start()
     {

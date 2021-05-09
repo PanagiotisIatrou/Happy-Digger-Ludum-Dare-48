@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using EZCameraShake;
 
 public class CameraFollower : MonoBehaviour
 {
@@ -16,6 +17,8 @@ public class CameraFollower : MonoBehaviour
 			return _instance;
 		}
 	}
+
+	public CameraShaker shaker;
 
 	private Transform targetTR;
 	private float positionSmoothTime = 0.05f;
@@ -35,5 +38,12 @@ public class CameraFollower : MonoBehaviour
 		newPos.z = -10;
 		newPos.y = Mathf.Clamp(newPos.y, Mathf.NegativeInfinity, 5f);
 		transform.position = newPos;
+	}
+
+    private void Update()
+    {
+		GameObject playerGO = GameManager.GetCurrentPlayer();
+		if (playerGO != null)
+			shaker.RestPositionOffset = transform.position;
 	}
 }

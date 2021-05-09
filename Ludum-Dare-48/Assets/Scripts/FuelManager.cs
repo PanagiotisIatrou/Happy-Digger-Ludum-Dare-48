@@ -8,7 +8,7 @@ public class FuelManager : MonoBehaviour
 {
     private Slider fuelSlider;
     private TextMeshProUGUI fuelText;
-    private float maxFuel = 8f;
+    private static float maxFuel = 8f;
     private float fuel;
 
     private void Start()

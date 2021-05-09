@@ -206,7 +206,7 @@ QualitySettings:
     softVegetation: 1
     realtimeReflectionProbes: 0
     billboardsFaceCameraPosition: 0
-    vSyncCount: 0
+    vSyncCount: 1
     lodBias: 2
     maximumLODLevel: 0
     streamingMipmapsActive: 0
@@ -232,7 +232,7 @@ QualitySettings:
     Stadia: 5
     Standalone: 5
     Tizen: 2
-    WebGL: 3
+    WebGL: 5
     WiiU: 5
     Windows Store Apps: 5
     XboxOne: 5

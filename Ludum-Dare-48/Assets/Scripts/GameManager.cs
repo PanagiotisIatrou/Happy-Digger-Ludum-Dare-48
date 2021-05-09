@@ -41,6 +41,8 @@ public class GameManager : MonoBehaviour
     public CanvasGroup StartMenuGroup;
     public CanvasGroup InterfaceGroup;
 
+    public MoneyManager MoneyManagerSC;
+
     private GameObject playerGO;
 
     private bool gameStarted = false;

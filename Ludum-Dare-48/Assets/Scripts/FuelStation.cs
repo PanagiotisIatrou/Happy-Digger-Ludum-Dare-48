@@ -11,6 +11,11 @@ public class FuelStation : MonoBehaviour
     private MoneyManager playerMoney;
     private bool isInside = false;
 
+    private void Start()
+    {
+        playerMoney = GameManager.Instance.MoneyManagerSC;
+    }
+
     private void Update()
     {
         if (isInside)
@@ -26,7 +31,6 @@ public class FuelStation : MonoBehaviour
             if (PlayerGO == null)
                 return;
             playerFuel = PlayerGO.GetComponent<FuelManager>();
-            playerMoney = PlayerGO.GetComponent<MoneyManager>();
         }
 
         if (isInside && Input.GetKeyDown(KeyCode.F))

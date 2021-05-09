@@ -39,17 +39,23 @@ public class Shop : MonoBehaviour
     private int currentDrillLevel = 0;
     private int currentEngineLevel = 0;
 
+    private MoneyManager moneyManager;
+
+    private void Start()
+    {
+        moneyManager = GameManager.Instance.MoneyManagerSC;
+    }
+
     public static void UpgradeFuelTank()
     {
         if (Instance.currentFuelTankLevel == Instance.fuelTankPrices.Length)
              return;
 
-        MoneyManager moneyManager = GameManager.GetCurrentPlayer().GetComponent<MoneyManager>();
         int price = Instance.fuelTankPrices[Instance.currentFuelTankLevel];
-        if (moneyManager.GetMoney() >= price)
+        if (Instance.moneyManager.GetMoney() >= price)
         {
             Instance.currentFuelTankLevel++;
-            moneyManager.DecreaseMoney(price);
+            Instance.moneyManager.DecreaseMoney(price);
             AudioSource.PlayClipAtPoint(GameManager.Instance.CoinPickupSound, GameManager.GetCurrentPlayer().transform.position);
             GameManager.GetCurrentPlayer().GetComponent<FuelManager>().SetMaxFuel(Instance.fuelTankLevels[Instance.currentFuelTankLevel - 1]);
 
@@ -70,12 +76,11 @@ public class Shop : MonoBehaviour
         if (Instance.currentDrillLevel == Instance.drillPrices.Length)
             return;
 
-        MoneyManager moneyManager = GameManager.GetCurrentPlayer().GetComponent<MoneyManager>();
         int price = Instance.drillPrices[Instance.currentDrillLevel];
-        if (moneyManager.GetMoney() >= price)
+        if (Instance.moneyManager.GetMoney() >= price)
         {
             Instance.currentDrillLevel++;
-            moneyManager.DecreaseMoney(price);
+            Instance.moneyManager.DecreaseMoney(price);
             AudioSource.PlayClipAtPoint(GameManager.Instance.CoinPickupSound, GameManager.GetCurrentPlayer().transform.position);
             GameManager.GetCurrentPlayer().GetComponent<PlayerMovement>().SetDrillingTime(Instance.drillLevels[Instance.currentDrillLevel - 1]);
 
@@ -96,12 +101,11 @@ public class Shop : MonoBehaviour
         if (Instance.currentEngineLevel == Instance.enginePrices.Length)
             return;
 
-        MoneyManager moneyManager = GameManager.GetCurrentPlayer().GetComponent<MoneyManager>();
         int price = Instance.enginePrices[Instance.currentEngineLevel];
-        if (moneyManager.GetMoney() >= price)
+        if (Instance.moneyManager.GetMoney() >= price)
         {
             Instance.currentEngineLevel++;
-            moneyManager.DecreaseMoney(price);
+            Instance.moneyManager.DecreaseMoney(price);
             AudioSource.PlayClipAtPoint(GameManager.Instance.CoinPickupSound, GameManager.GetCurrentPlayer().transform.position);
             GameManager.GetCurrentPlayer().GetComponent<PlayerMovement>().SetMaxSpeedAndAcceleration(Instance.engineMaxSpeedLevels[Instance.currentEngineLevel - 1], Instance.engineAccelerationLevels[Instance.currentEngineLevel - 1]);
             if (Instance.currentEngineLevel != Instance.enginePrices.Length)

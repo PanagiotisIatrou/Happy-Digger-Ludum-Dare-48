@@ -11,6 +11,11 @@ public class SellingStation : MonoBehaviour
     private Inventory playerInventory;
     private bool isInside = false;
 
+    private void Start()
+    {
+        playerMoney = GameManager.Instance.MoneyManagerSC;
+    }
+
     private void Update()
     {
         if (isInside)
@@ -22,7 +27,6 @@ public class SellingStation : MonoBehaviour
             if (PlayerGO == null)
                 return;
             playerInventory = PlayerGO.GetComponent<Inventory>();
-            playerMoney = PlayerGO.GetComponent<MoneyManager>();
         }
 
         if (isInside && Input.GetKeyDown(KeyCode.F))
